@@ -1,17 +1,23 @@
 {
     "manifest_version": 3,
     "name": "Schulnetz REVANCED",
-    "version": "1.0.0",
+    "version": "0.0.0.1",
     "description": "Enhances the Schulnetz experience with additional features and customizations.",
     "permissions": [
         "storage",
         "tabs",
         "webRequest",
-        "webRequestBlocking",
         "scripting"
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background/background.js"
+    },
+    "options_ui": {
+        "page": "content/frontend/settings.html"
+    },
+    "action": {
+        "default_title": "Schulnetz REVANCED Einstellungen",
+        "default_popup": "content/frontend/settings.html"
     },
     "host_permissions": [
         "*://schulnetz.lu.ch/*"
