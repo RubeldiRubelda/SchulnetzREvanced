@@ -19,6 +19,18 @@ document.getElementById('settingsForm').addEventListener('submit', function(even
 
 // Lade gespeicherte Einstellungen beim Laden der Seite
 document.addEventListener('DOMContentLoaded', function() {
+    // Back-Button Logik mit Animation
+    const backLink = document.querySelector('.back-link');
+    if (backLink) {
+        backLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.body.classList.add('slide-out-right');
+            setTimeout(() => {
+                window.location.href = 'index.html?from=settings';
+            }, 250);
+        });
+    }
+
     chrome.storage.sync.get(['theme', 'notifications', 'autoSave'], function(result) {
         document.getElementById('theme').value = result.theme || 'light';
         document.getElementById('notifications').checked = result.notifications || false;
