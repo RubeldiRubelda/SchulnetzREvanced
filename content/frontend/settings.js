@@ -1,24 +1,11 @@
 // settings.js - Skript für die Einstellungsseite
 
-document.getElementById('settingsForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const theme = document.getElementById('theme').value;
-    const notifications = document.getElementById('notifications').checked;
-    const autoSave = document.getElementById('autoSave').checked;
-    
-    // Speichere Einstellungen in chrome.storage
-    chrome.storage.sync.set({
-        theme: theme,
-        notifications: notifications,
-        autoSave: autoSave
-    }, function() {
-        alert('Einstellungen gespeichert!');
-    });
-});
-
-// Lade gespeicherte Einstellungen beim Laden der Seite
 document.addEventListener('DOMContentLoaded', function() {
+    const themeSelect = document.getElementById('theme');
+    const langSelect = document.getElementById('languageMode');
+    const hideGradesCheckbox = document.getElementById('hideGrades');
+    const saveButton = document.getElementById('revancedStatusButton');
+
     // Back-Button Logik mit Animation
     const backLink = document.querySelector('.back-link');
     if (backLink) {
@@ -31,9 +18,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    chrome.storage.sync.get(['theme', 'notifications', 'autoSave'], function(result) {
-        document.getElementById('theme').value = result.theme || 'light';
-        document.getElementById('notifications').checked = result.notifications || false;
-        document.getElementById('autoSave').checked = result.autoSave || false;
+    // Lade gespeicherte Einstellungen
+    chrome.storage.local.get(['theme', 'languageMode', 'hideGrades'], function(result) {
+        if (themeSelect) themeSelect.value = result.theme || 'devicestandard';
+        if (langSelect) langSelect.value = result.languageMode || 'du';
+        if (hideGradesCheckbox) hideGradesCheckbox.checked = result.hideGrades || false;
     });
+
+    // Speichern bei Klick auf Button
+    if (saveButton) {
+        saveButton.addEventListener('click', function() {
+            const theme = themeSelect.value;
+            const lang = langSelect.value;
+            const hideGrades = hideGradesCheckbox.checked;
+            
+            chrome.storage.local.set({
+                theme: theme,
+                languageMode: lang,
+                hideGrades: hideGrades
+            }, function() {
+                // Feedback geben
+                const originalText = saveButton.textContent;
+                saveButton.textContent = "Gespeichert!";
+                saveButton.style.backgroundColor = "#2e7d32";
+                
+                setTimeout(() => {
+                    saveButton.textContent = originalText;
+                    saveButton.style.backgroundColor = "";
+                }, 1500);
+            });
+        });
+    }
 });

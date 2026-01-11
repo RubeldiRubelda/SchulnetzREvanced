@@ -49,7 +49,13 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         } else {
             removeModifications();
             document.body.classList.remove('revanced-active');
+            // Darkmode entfernen, wenn Addon aus
+            document.documentElement.classList.remove('revanced-dark');
         }
+    }
+    
+    if (changes.theme && window.Modders) {
+        window.Modders.applyDarkMode(changes.theme.newValue);
     }
 });
 

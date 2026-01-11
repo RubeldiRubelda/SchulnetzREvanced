@@ -27,6 +27,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const revancedToggle = document.getElementById('revancedToggle');
     const statusText = document.getElementById('statusText');
 
+    // QR Code Logic
+    const qrButton = document.getElementById('qrButton');
+    const qrModal = document.getElementById('qrModal');
+    const qrImage = document.getElementById('qrImage');
+    const qrPlaceholder = document.getElementById('qrPlaceholder');
+    const closeBtn = document.querySelector('.close');
+
+    if (qrButton && qrModal) {
+        qrButton.addEventListener('click', () => {
+            qrModal.style.display = 'block';
+            
+            // Lade QR Code aus Storage
+            chrome.storage.local.get(['handyQrCodeUrl'], (result) => {
+                const qrImage = document.getElementById('qrImage');
+                const qrPlaceholder = document.getElementById('qrPlaceholder');
+                
+                if (result.handyQrCodeUrl) {
+                    console.log("Schulnetz REvanced: QR URL gefunden:", result.handyQrCodeUrl);
+                    qrImage.src = result.handyQrCodeUrl;
+                    qrImage.style.display = 'block';
+                    qrPlaceholder.style.display = 'none';
+                } else {
+                    console.warn("Schulnetz REvanced: Kein QR Code im Storage gefunden.");
+                    qrImage.style.display = 'none';
+                    qrPlaceholder.style.display = 'block';
+                }
+            });
+        });
+
+        if (closeBtn) {
+            closeBtn.onclick = () => qrModal.style.display = 'none';
+        }
+
+        window.onclick = (event) => {
+            if (event.target == qrModal) {
+                qrModal.style.display = 'none';
+            }
+        };
+    }
+
     if (revancedToggle) {
         // Load settings
         chrome.storage.local.get(['revancedEnabled'], function(result) {

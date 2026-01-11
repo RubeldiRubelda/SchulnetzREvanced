@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Schulnetz REVANCED",
-    "version": "0.0.0.2",
+    "version": "1.0.0.1",
     "description": "Eine Erweiterung zur Verbesserung der Schulnetz-Erfahrung.",
     "permissions": [
         "storage",
@@ -28,6 +28,8 @@
                 "*://schulnetz.lu.ch/*"
             ],
             "js": [
+                "content/i18n/du.js",
+                "content/i18n/sie.js",
                 "content/modders.js",
                 "content/contentScript.js"
             ],

@@ -24,7 +24,19 @@
             <option value="light">Hell</option>
             <option value="dark">Dunkel</option>
         </select>
+        <label for="languageMode">Sprachstil:</label>
+        <select id="languageMode">
+            <option value="du">"Du" Form (informell)</option>
+            <option value="sie">"Sie" Form (formell)</option>
+        </select>
 
+        <div class="setting-row" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+            <span>Noten ausblenden:</span>
+            <label class="switch">
+                <input type="checkbox" id="hideGrades">
+                <span class="slider round"></span>
+            </label>
+        </div>
 
     </form>
         <button type="button" id="revancedStatusButton">Speichern</button>

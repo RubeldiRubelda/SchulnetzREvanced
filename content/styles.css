@@ -16,3 +16,360 @@ body.revanced-active img.cls-page--header-row--sn-logo {
 body.revanced-disabled img.cls-page--header-row--sn-logo {
     opacity: 1;
 }
+
+/* DARK MODE IMPLEMENTATION - HIGH QUALITY */
+html.revanced-dark {
+    --bg-deep: #121212;
+    --bg-surface: #1e1e1e;
+    --bg-card: #252525;
+    --text-primary: #e0e0e0;
+    --text-secondary: #aaaaaa;
+    --accent: #bb86fc;
+    --accent-hover: #d7b7fd;
+    --border: #333333;
+    --table-row-hover: #2a2a2a;
+}
+
+html.revanced-dark body {
+    background-color: var(--bg-deep) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Header & Navigation */
+html.revanced-dark .cls-page--header, 
+html.revanced-dark .mdl-layout__header,
+html.revanced-dark .titelleiste,
+html.revanced-dark .header-menu {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .cls-page--header-row--logo-span {
+    background-color: var(--bg-surface) !important;
+}
+
+html.revanced-dark .cls-page--header-row,
+html.revanced-dark .mdl-layout__header-row {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Side Drawer (Seitenmenü) */
+html.revanced-dark .mdl-layout__drawer,
+html.revanced-dark #nav-drawer,
+html.revanced-dark .cls-page--navlist,
+html.revanced-dark #navigation-list {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .cls-page--mainnav-small {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .cls-page--leftmenu-active {
+    background-color: var(--table-row-hover) !important;
+    border-left: 3px solid var(--accent) !important;
+}
+
+html.revanced-dark .cls-page--navlist-spacer-bottom {
+    background-color: var(--bg-surface) !important;
+}
+
+html.revanced-dark .mdl-navigation__link {
+    color: var(--text-secondary) !important;
+}
+
+html.revanced-dark .mdl-navigation__link:hover {
+    background-color: var(--table-row-hover) !important;
+    color: var(--accent) !important;
+}
+
+html.revanced-dark .cls-page--mainmenu-element {
+    color: var(--text-secondary) !important;
+}
+
+html.revanced-dark .cls-page--mainmenu-active {
+    color: var(--accent) !important;
+    border-bottom: 2px solid var(--accent) !important;
+}
+
+html.revanced-dark .cls-page--mainmenu-element:hover {
+    color: var(--accent-hover) !important;
+}
+
+/* Gradient & Spacers */
+html.revanced-dark .cls-page--header-row--logo-gradient {
+    display: none !important; /* Entfernt den hellen Verlauf */
+}
+
+/* Main Content Area */
+html.revanced-dark main, 
+html.revanced-dark .mdl-layout__content, 
+html.revanced-dark .cls-page--content-container {
+    background-color: var(--bg-deep) !important;
+}
+
+/* Tables - Die Notenliste etc. */
+html.revanced-dark .mdl-data-table {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .mdl-data-table thead,
+html.revanced-dark .mdl-data-table thead tr,
+html.revanced-dark .mdl-data-table thead th {
+    background-color: var(--bg-surface) !important;
+    color: var(--accent) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .mdl-data-table tbody tr {
+    border-top: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .mdl-data-table tbody tr:hover {
+    background-color: var(--table-row-hover) !important;
+}
+
+html.revanced-dark .mdl-data-table td {
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+/* Cards & Containers */
+html.revanced-dark .mdl-card, 
+html.revanced-dark .cls-card {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .mdl-card__title, 
+html.revanced-dark .mdl-card__supporting-text {
+    color: var(--text-primary) !important;
+}
+
+/* Buttons & Inputs */
+html.revanced-dark .mdl-button {
+    color: var(--text-primary) !important;
+}
+
+html.revanced-dark .mdl-button--colored {
+    color: var(--accent) !important;
+}
+
+html.revanced-dark input, 
+html.revanced-dark select, 
+html.revanced-dark textarea {
+    background-color: #2d2d2d !important;
+    color: white !important;
+    border: 1px solid var(--border) !important;
+    padding: 4px 8px !important;
+}
+
+/* Icons & Logo */
+html.revanced-dark .cls-page--header-row--sn-logo {
+    /* Logo wird meistens durch JS getauscht, hier trotzdem Filter falls nötig */
+    filter: drop-shadow(0 0 2px rgba(255,255,255,0.2));
+}
+
+html.revanced-dark .far, 
+html.revanced-dark .fas, 
+html.revanced-dark .fal {
+    color: var(--text-secondary) !important;
+}
+
+html.revanced-dark .cls-page--mainmenu-active .fas,
+html.revanced-dark .cls-page--mainmenu-active .far {
+    color: var(--accent) !important;
+}
+
+/* Scrollbars - Chrome/Edge */
+html.revanced-dark ::-webkit-scrollbar {
+    width: 10px;
+}
+html.revanced-dark ::-webkit-scrollbar-track {
+    background: var(--bg-deep);
+}
+html.revanced-dark ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+html.revanced-dark ::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+/* Menüs und Popups */
+html.revanced-dark .mdl-menu__container,
+html.revanced-dark .mdl-menu,
+html.revanced-dark .mdl-menu__item {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+html.revanced-dark .mdl-menu__item:hover {
+    background-color: var(--table-row-hover) !important;
+}
+
+/* Tooltips */
+html.revanced-dark .mdl-tooltip {
+    background-color: #444 !important;
+    color: white !important;
+}
+
+/* Dialoge */
+html.revanced-dark .mdl-dialog {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5) !important;
+}
+
+/* Startseite spezifisch */
+html.revanced-dark #logo-span {
+    background-color: transparent !important;
+}
+
+html.revanced-dark .timer-holder svg circle {
+    stroke: var(--accent) !important;
+}
+
+html.revanced-dark .timer-value {
+    color: var(--text-primary) !important;
+}
+
+/* STUNDENPLAN / SCHEDULER DARK MODE */
+html.revanced-dark .dhx_cal_container,
+html.revanced-dark .dhx_cal_data,
+html.revanced-dark .dhx_cal_header {
+    background-color: var(--bg-deep) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Gitterlinien und Skalen */
+html.revanced-dark .dhx_scale_bar {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-secondary) !important;
+    border-left: 1px solid var(--border) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .dhx_scale_holder,
+html.revanced-dark .dhx_scale_holder_now {
+    background-color: var(--bg-deep) !important;
+    background-image: none !important; 
+    border-right: 1px solid var(--border) !important;
+}
+
+/* Zeitspalte links und Monatsansicht */
+html.revanced-dark .dhx_month_head,
+html.revanced-dark .dhx_month_body {
+    background-color: var(--bg-card) !important;
+    border-right: 1px solid var(--border) !important;
+    border-bottom: 1px solid var(--border) !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Events im Stundenplan */
+html.revanced-dark .dhx_cal_event div {
+    filter: saturate(0.8) brightness(0.9);
+    border-color: rgba(0,0,0,0.2) !important;
+}
+
+html.revanced-dark .dhx_cal_event .dhx_body,
+html.revanced-dark .dhx_cal_event .dhx_title,
+html.revanced-dark .dhx_cal_event .dhx_footer {
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Tabs (Tag, Woche, Monat) */
+html.revanced-dark .dhx_cal_tab {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-secondary) !important;
+}
+
+html.revanced-dark .dhx_cal_tab.active {
+    background-color: var(--accent) !important;
+    color: white !important;
+}
+
+/* Heute Button und Navi-Pfeile */
+html.revanced-dark .dhx_cal_today_button,
+html.revanced-dark .dhx_cal_prev_button,
+html.revanced-dark .dhx_cal_next_button {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Spezifische Schulnetz Terminknöpfe (STUNDENPLAN, TERMINE, PRÜFUNGEN) */
+html.revanced-dark .header-for-page-actions h2 {
+    color: var(--accent) !important;
+}
+
+html.revanced-dark .mdl-button.mdl-button--raised.mdl-button--colored {
+    background-color: var(--accent) !important;
+    color: white !important;
+}
+
+/* Spezifische Fixes für Schulnetz Startseiten-Elemente */
+html.revanced-dark .tabletitle, 
+html.revanced-dark h3,
+html.revanced-dark p,
+html.revanced-dark span,
+html.revanced-dark b {
+    color: var(--text-primary);
+}
+
+html.revanced-dark .tabletitle, 
+html.revanced-dark h3 {
+    color: var(--accent) !important;
+}
+
+html.revanced-dark #footer {
+    display: none !important;
+}
+
+/* HANDY QR CODE AUSBLENDEN */
+/* Wir verstecken den Bereich auf der Startseite, da er nun im Addon ist */
+#qrimage_pwa_appstore,
+#qrimage_pwa,
+img.cls-page--login-qr-code,
+img[src*="qr_img.php"],
+.cls-page--home-column img[src*="qrcode"] {
+    display: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* NOTEN AUSBLENDEN (Grade Hider) */
+.revanced-grade-hidden {
+    filter: blur(5px) grayscale(1);
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0 4px;
+    display: inline-block;
+    transition: filter 0.3s ease, background-color 0.3s ease;
+    user-select: none;
+}
+
+.revanced-grade-hidden:hover {
+    filter: blur(3px) grayscale(0.5);
+    background-color: rgba(0,0,0,0.05);
+}
+
+.revanced-grade-visible {
+    filter: blur(0px) grayscale(0) !important;
+    background-color: transparent !important;
+    cursor: default !important;
+}
