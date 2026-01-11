@@ -19,7 +19,13 @@
     
     <h1>Schulnetz REVANCED</h1>
 
-    <button type="button" id="revancedStatusButton">Revanced Starten</button>
+    <div class="status-container">
+        <label class="switch">
+            <input type="checkbox" id="revancedToggle">
+            <span class="slider round"></span>
+        </label>
+        <p id="statusText">Wird geladen...</p>
+    </div>
 
     <script src="popup.js"></script>
 </body>

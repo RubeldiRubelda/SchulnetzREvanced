@@ -1,0 +1,18 @@
+/* styles.css - Basis-Styles für Modifikationen */
+
+/* Logo initial verstecken, um das Flackern zu verhindern */
+/* Wir machen das nur, wenn wir noch nicht wissen, ob wir deaktiviert sind */
+img.cls-page--header-row--sn-logo:not(.revanced-ready) {
+    opacity: 0;
+}
+
+/* Wenn REvanced aktiv ist und das Logo getauscht wurde, zeigen */
+body.revanced-active img.cls-page--header-row--sn-logo {
+    opacity: 1;
+    transition: opacity 0.1s ease-in;
+}
+
+/* Falls REvanced deaktiviert ist, Logo sofort zeigen */
+body.revanced-disabled img.cls-page--header-row--sn-logo {
+    opacity: 1;
+}

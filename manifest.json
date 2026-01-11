@@ -28,11 +28,13 @@
                 "*://schulnetz.lu.ch/*"
             ],
             "js": [
+                "content/modders.js",
                 "content/contentScript.js"
             ],
             "css": [
                 "content/styles.css"
-            ]
+            ],
+            "run_at": "document_start"
         }
     ],
     "icons": {
@@ -40,5 +42,11 @@
         "32": "icons/icon32.png",
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
-    }
+    },
+    "web_accessible_resources": [
+        {
+          "resources": ["icons/*.png"],
+          "matches": ["*://schulnetz.lu.ch/*"]
+        }
+    ]
 }

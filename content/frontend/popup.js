@@ -24,11 +24,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const startButton = document.getElementById('revancedStatusButton');
-    if (startButton) {
-        startButton.addEventListener('click', function() {
-            console.log("Revanced Modus wird aktiviert...");
-            // Hier könnte die Logik zum Starten hin
+    const revancedToggle = document.getElementById('revancedToggle');
+    const statusText = document.getElementById('statusText');
+
+    if (revancedToggle) {
+        // Load settings
+        chrome.storage.local.get(['revancedEnabled'], function(result) {
+            // Default to true if not set
+            const enabled = result.revancedEnabled !== false;
+            revancedToggle.checked = enabled;
+            updateStatusText(enabled);
         });
+
+        revancedToggle.addEventListener('change', function() {
+            const enabled = revancedToggle.checked;
+            chrome.storage.local.set({ revancedEnabled: enabled }, function() {
+                console.log("Revanced Modus " + (enabled ? "aktiviert" : "deaktiviert"));
+                updateStatusText(enabled);
+            });
+        });
+    }
+
+    function updateStatusText(enabled) {
+        if (statusText) {
+            statusText.textContent = enabled ? "Aktiviert" : "Deaktiviert";
+            statusText.style.color = enabled ? "#4CAF50" : "#f44336";
+        }
     }
 });
