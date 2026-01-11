@@ -44,12 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const qrPlaceholder = document.getElementById('qrPlaceholder');
                 
                 if (result.handyQrCodeUrl) {
-                    console.log("Schulnetz REvanced: QR URL gefunden:", result.handyQrCodeUrl);
                     qrImage.src = result.handyQrCodeUrl;
                     qrImage.style.display = 'block';
                     qrPlaceholder.style.display = 'none';
                 } else {
-                    console.warn("Schulnetz REvanced: Kein QR Code im Storage gefunden.");
+                    // Kein QR Code gefunden - Placeholder wird bereits angezeigt
                     qrImage.style.display = 'none';
                     qrPlaceholder.style.display = 'block';
                 }
@@ -79,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         revancedToggle.addEventListener('change', function() {
             const enabled = revancedToggle.checked;
             chrome.storage.local.set({ revancedEnabled: enabled }, function() {
-                console.log("Revanced Modus " + (enabled ? "aktiviert" : "deaktiviert"));
                 updateStatusText(enabled);
             });
         });
