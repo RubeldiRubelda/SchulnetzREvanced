@@ -1,5 +1,10 @@
 // Schulnetz REvanced Background Script
 
+// Konfiguration für GitHub Release Checker
+const GITHUB_REPO = 'RubeldiRubelda/SchulnetzREvanced';
+const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
+const CHECK_INTERVAL_HOURS = 6; // Alle 6 Stunden prüfen
+
 chrome.runtime.onInstalled.addListener(() => {
     // Standardmäßig aktivieren
     chrome.storage.local.get(['revancedEnabled'], function(result) {
@@ -7,4 +12,94 @@ chrome.runtime.onInstalled.addListener(() => {
             chrome.storage.local.set({ revancedEnabled: true });
         }
     });
+    
+    // Beim ersten Install sofort auf Updates prüfen
+    checkForUpdates();
+    
+    // Alarm für regelmäßige Update-Checks setzen
+    chrome.alarms.create('checkUpdates', { periodInMinutes: CHECK_INTERVAL_HOURS * 60 });
+});
+
+// Regelmäßig auf Updates prüfen
+chrome.alarms.onAlarm.addListener((alarm) => {
+    if (alarm.name === 'checkUpdates') {
+        checkForUpdates();
+    }
+});
+
+// Funktion zum Prüfen von Updates
+async function checkForUpdates() {
+    try {
+        const response = await fetch(GITHUB_API_URL);
+        const latestRelease = await response.json();
+        
+        if (!response.ok) {
+            console.error('GitHub API Error:', latestRelease);
+            return;
+        }
+        
+        const latestVersion = latestRelease.tag_name.replace('v', ''); // z.B. "1.0.1"
+        const currentVersion = chrome.runtime.getManifest().version;
+        
+        // Speichere die neueste verfügbare Version
+        chrome.storage.local.set({
+            latestVersion: latestVersion,
+            latestReleaseUrl: latestRelease.html_url,
+            lastUpdateCheck: new Date().toISOString()
+        });
+        
+        // Vergleiche Versionen
+        if (isNewerVersion(latestVersion, currentVersion)) {
+            // Zeige Badge und speichere Update-Info
+            chrome.storage.local.set({ updateAvailable: true });
+            chrome.action.setBadgeText({ text: '!' });
+            chrome.action.setBadgeBackgroundColor({ color: '#FF0000' });
+            
+            // Optional: Benachrichtigung anzeigen
+            chrome.notifications.create('updateAvailable', {
+                type: 'basic',
+                iconUrl: 'icons/icon128.png',
+                title: 'Schulnetz REVANCED Update verfügbar',
+                message: `Version ${latestVersion} ist jetzt verfügbar!`,
+                buttons: [
+                    { title: 'Jetzt herunterladen' },
+                    { title: 'Später' }
+                ]
+            });
+        } else {
+            chrome.storage.local.set({ updateAvailable: false });
+            chrome.action.setBadgeText({ text: '' });
+        }
+    } catch (error) {
+        console.error('Update check failed:', error);
+    }
+}
+
+// Hilfsfunktion: Vergleiche zwei Versionsnummern
+function isNewerVersion(latestVersion, currentVersion) {
+    const latest = latestVersion.split('.').map(Number);
+    const current = currentVersion.split('.').map(Number);
+    
+    for (let i = 0; i < Math.max(latest.length, current.length); i++) {
+        const l = latest[i] || 0;
+        const c = current[i] || 0;
+        
+        if (l > c) return true;
+        if (l < c) return false;
+    }
+    
+    return false;
+}
+
+// Benachrichtigungsklicks verarbeiten
+chrome.notifications.onButtonClicked.addListener((notificationId, buttonIndex) => {
+    if (notificationId === 'updateAvailable') {
+        chrome.storage.local.get(['latestReleaseUrl'], (result) => {
+            if (buttonIndex === 0) {
+                // "Jetzt herunterladen" geklickt
+                chrome.tabs.create({ url: result.latestReleaseUrl });
+            }
+        });
+        chrome.notifications.clear(notificationId);
+    }
 });

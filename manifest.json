@@ -7,7 +7,12 @@
         "storage",
         "tabs",
         "webRequest",
-        "scripting"
+        "scripting",
+        "alarms",
+        "notifications"
+    ],
+    "host_permissions": [
+        "*://api.github.com/*"
     ],
     "background": {
         "service_worker": "background/background.js"
