@@ -38,8 +38,18 @@ async function checkForUpdates() {
             return;
         }
         
-        const latestVersion = latestRelease.tag_name.replace('v', ''); // z.B. "1.0.1"
+        // Parse Version aus verschiedenen Formaten: v1.0.0, Version1-0-0, 1.0.0 usw.
+        let latestVersion = latestRelease.tag_name;
+        // Entferne alle nicht-numerischen Zeichen außer Punkten am Anfang
+        latestVersion = latestVersion.replace(/^[^0-9]+/i, ''); // Entferne nicht-numerische Zeichen am Anfang
+        latestVersion = latestVersion.replace(/-/g, '.'); // Ersetze Bindestriche durch Punkte
+        latestVersion = latestVersion.trim();
+        
         const currentVersion = chrome.runtime.getManifest().version;
+        
+        console.log('GitHub Tag:', latestRelease.tag_name);
+        console.log('Parsed Latest Version:', latestVersion);
+        console.log('Current Version:', currentVersion);
         
         // Speichere die neueste verfügbare Version
         chrome.storage.local.set({
@@ -77,18 +87,26 @@ async function checkForUpdates() {
 
 // Hilfsfunktion: Vergleiche zwei Versionsnummern
 function isNewerVersion(latestVersion, currentVersion) {
-    const latest = latestVersion.split('.').map(Number);
-    const current = currentVersion.split('.').map(Number);
-    
-    for (let i = 0; i < Math.max(latest.length, current.length); i++) {
-        const l = latest[i] || 0;
-        const c = current[i] || 0;
+    try {
+        const latest = latestVersion.split('.').map(part => parseInt(part) || 0);
+        const current = currentVersion.split('.').map(part => parseInt(part) || 0);
         
-        if (l > c) return true;
-        if (l < c) return false;
+        // Fülle auf die gleiche Länge mit 0en auf
+        const maxLen = Math.max(latest.length, current.length);
+        while (latest.length < maxLen) latest.push(0);
+        while (current.length < maxLen) current.push(0);
+        
+        // Vergleiche jede Komponente
+        for (let i = 0; i < maxLen; i++) {
+            if (latest[i] > current[i]) return true;
+            if (latest[i] < current[i]) return false;
+        }
+        
+        return false;
+    } catch (error) {
+        console.error('Version comparison error:', error);
+        return false;
     }
-    
-    return false;
 }
 
 // Benachrichtigungsklicks verarbeiten

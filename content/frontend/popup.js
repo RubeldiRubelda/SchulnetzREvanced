@@ -89,4 +89,31 @@ document.addEventListener('DOMContentLoaded', function() {
             statusText.style.color = enabled ? "#4CAF50" : "#f44336";
         }
     }
+
+    // Update Banner Logic
+    function checkAndDisplayUpdateBanner() {
+        chrome.storage.local.get(['updateAvailable', 'latestVersion', 'latestReleaseUrl'], (result) => {
+            const updateBanner = document.getElementById('updateBanner');
+            const updateDownloadBtn = document.getElementById('updateDownloadBtn');
+            const updateCloseBtn = document.getElementById('updateCloseBtn');
+            const newVersionSpan = document.getElementById('newVersion');
+
+            if (result.updateAvailable) {
+                newVersionSpan.textContent = result.latestVersion;
+                updateBanner.style.display = 'block';
+
+                updateDownloadBtn.addEventListener('click', () => {
+                    chrome.tabs.create({ url: result.latestReleaseUrl });
+                    updateBanner.style.display = 'none';
+                });
+
+                updateCloseBtn.addEventListener('click', () => {
+                    updateBanner.style.display = 'none';
+                });
+            }
+        });
+    }
+
+    // Beim Laden das Update-Banner prüfen
+    checkAndDisplayUpdateBanner();
 });
