@@ -1,4 +1,4 @@
-<img src="">
+<img src="https://raw.githubusercontent.com/RubeldiRubelda/SchulnetzREvanced/refs/heads/main/content/media/Advertisement%201280x800.png" alt="Schulnetz REvanced Banner">
 
 
 # SchulnetzREvanced
