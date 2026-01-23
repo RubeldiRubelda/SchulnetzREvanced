@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Schulnetz REVANCED",
+    "name": "Schulnetz REVANCED (Firefox)",
     "version": "1.0.0.1",
     "description": "Eine Erweiterung zur Verbesserung der Schulnetz-Erfahrung.",
     "permissions": [
@@ -12,7 +12,7 @@
         }
     },
     "background": {
-        "service_worker": "background/background.js"
+        "scripts": ["background/background.js"]
     },
     "options_ui": {
         "page": "content/frontend/settings.html"
