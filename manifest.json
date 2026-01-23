@@ -1,10 +1,12 @@
 {
     "manifest_version": 3,
     "name": "Schulnetz REVANCED",
-    "version": "1.0.0.1",
+    "version": "1.0.0.2",
     "description": "Eine Erweiterung zur Verbesserung der Schulnetz-Erfahrung.",
     "permissions": [
-        "storage"
+        "storage",
+        "alarms",
+        "notifications"
     ],
     "browser_specific_settings": {
         "gecko": {
@@ -22,7 +24,8 @@
         "default_popup": "content/frontend/index.html"
     },
     "host_permissions": [
-        "*://schulnetz.lu.ch/*"
+        "*://schulnetz.lu.ch/*",
+        "*://api.github.com/*"
     ],
     "content_scripts": [
         {

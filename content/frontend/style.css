@@ -296,3 +296,93 @@
                 background-color: white;
             }
         }
+
+        /* Update Banner Styles */
+        .update-banner {
+            background: linear-gradient(135deg, #FF9800 0%, #FF7043 100%);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .update-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+
+        .update-icon {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .update-text {
+            flex: 1;
+        }
+
+        .update-text strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .update-text p {
+            margin: 0;
+            font-size: 13px;
+            opacity: 0.95;
+        }
+
+        .update-download-btn {
+            background-color: white;
+            color: #FF7043;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .update-download-btn:hover {
+            background-color: #f5f5f5;
+            transform: scale(1.05);
+        }
+
+        .update-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .update-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }

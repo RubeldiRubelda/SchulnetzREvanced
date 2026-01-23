@@ -1,2 +1,21 @@
 # SchulnetzREvanced
 Schulnetz ist eine Plattform für Schulen. Da diese ein Refresh gut vertragen kann, gibt es hier das entsprechende Browser ADDON für besseren Style 😉
+
+
+
+# Download
+
+SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzugte Variante:
+
+## Browser-Erweiterungen
+> **Information**: Die Addons werden nach und nach zu den Browsern hochgeladen. Dies dauert allerdings noch einiges an Zeit. Bis dahin wird der Direktlink per Github angeboten. 
+
+| Chrome (In Bearbeitung) | Edge (VERFÜGBAR!) | Firefox (In Bearbeitung)|
+|--------|------|---------|
+| [![Chrome Web Store](https://img.shields.io/badge/Chrome-Download-blue?logo=google-chrome&style=for-the-badge)](https://chromewebstore.google.com/search/SchulnetzREvanced) | [![Edge Add-ons](https://img.shields.io/badge/Edge-Download-0078D4?logo=microsoft-edge&style=for-the-badge)](https://microsoftedge.microsoft.com/addons/detail/schulnetz-revanced/nbcknhonbngcmnflhjkjnmilgodkkgla) | [![Firefox Add-ons](https://img.shields.io/badge/Firefox-Download-FF7139?logo=firefox&style=for-the-badge)](https://addons.mozilla.org/search/?q=SchulnetzREvanced) |
+
+## Direkter Download
+
+[![GitHub Release](https://img.shields.io/badge/GitHub-Download-181717?logo=github&style=for-the-badge)](https://github.com/yourusername/SchulnetzREvanced/releases/latest)
+
+> **Hinweis**: Der Download über die offiziellen Browser-Erweiterungsmärkte wird empfohlen, da die Erweiterung dort automatisch aktualisiert wird.
