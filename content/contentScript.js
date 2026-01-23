@@ -57,6 +57,15 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     if (changes.theme && window.Modders) {
         window.Modders.applyDarkMode(changes.theme.newValue);
     }
+
+    if (changes.accentColor && window.Modders) {
+        window.Modders.applyAccentColor(changes.accentColor.newValue);
+    }
+
+    if (changes.warningColorMode && window.Modders) {
+        window.Modders.warningColorMode = changes.warningColorMode.newValue;
+        if (document.body) window.Modders.applyGradeHider(document.body);
+    }
 });
 
 init();

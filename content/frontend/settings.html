@@ -30,12 +30,68 @@
             <option value="sie">"Sie" Form (formell)</option>
         </select>
 
+        <label for="schoolId">Meine Schule:</label>
+        <select id="schoolId">
+            <optgroup label="Kantonsschulen">
+                <option value="ksalp">Kantonsschule Alpenquai Luzern</option>
+                <option value="ksber">Kantonsschule Beromünster</option>
+                <option value="ksmus">Kantonsschule Musegg Luzern</option>
+                <option value="ksreu">Kantonsschule Reussbühl Luzern</option>
+                <option value="kssch">Kantonsschule Schüpfheim</option>
+                <option value="kssee">Kantonsschule Seetal</option>
+                <option value="kssur">Kantonsschule Sursee</option>
+                <option value="kswil">Kantonsschule Willisau</option>
+            </optgroup>
+            <optgroup label="Berufsbildungszentren">
+                <option value="bbzb">BBZ Bau und Gewerbe</option>
+                <option value="bbzg">BBZ Gesundheit und Soziales</option>
+                <option value="bbzn">BBZ Natur und Ernährung</option>
+                <option value="bbzw" selected>BBZ Wirtschaft, Informatik und Technik</option>
+                <option value="fmz">FMZ Luzern</option>
+                <option value="wbzlu">WBZ Luzern</option>
+                <option value="zba">ZBA Luzern</option>
+            </optgroup>
+            <optgroup label="Andere">
+                <option value="zentrale">Zentraler Mandant</option>
+            </optgroup>
+        </select>
+
         <div class="setting-row" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
             <span>Noten ausblenden:</span>
             <label class="switch">
                 <input type="checkbox" id="hideGrades">
                 <span class="slider round"></span>
             </label>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
+
+        <h3>Farben anpassen</h3>
+        
+        <div class="setting-row">
+            <label>Akzentfarbe:</label>
+            <div class="color-presets" id="colorPresets">
+                <div class="color-dot" data-color="#bb86fc" style="background-color: #bb86fc;" title="Violett (Standard)"></div>
+                <div class="color-dot" data-color="#2196F3" style="background-color: #2196F3;" title="Blau"></div>
+                <div class="color-dot" data-color="#4CAF50" style="background-color: #4CAF50;" title="Grün"></div>
+                <div class="color-dot" data-color="#FF9800" style="background-color: #FF9800;" title="Orange"></div>
+                <div class="color-dot" data-color="#f44336" style="background-color: #f44336;" title="Rot"></div>
+                <div class="color-dot selector" title="Eigene Farbe wählen">
+                    <input type="color" id="accentColor" value="#bb86fc">
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-row">
+            <label>Warnfarbe (Noten unter 4):</label>
+            <div class="color-presets" id="warningPresets">
+                <div class="color-dot" data-mode="standard" style="background-color: #eee; display: flex; align-items: center; justify-content: center;" title="Standard (keine Farbe)">
+                    <span style="color: #999; font-size: 18px;">✕</span>
+                </div>
+                <div class="color-dot" data-mode="softred" style="background-color: #ffcdd2;" title="Sanftes Rot"></div>
+                <div class="color-dot" data-mode="alarmred" style="background-color: #f44336;" title="Alarm Rot"></div>
+                <div class="color-dot" data-mode="darkred" style="background-color: #b71c1c;" title="Dunkles Rot"></div>
+            </div>
         </div>
 
     </form>

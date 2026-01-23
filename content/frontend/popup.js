@@ -1,6 +1,26 @@
 // popup.js - Skript für das Hauptmenü (index.html)
 
+function applyTheme(theme) {
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else if (theme === 'light') {
+        document.body.classList.remove('dark-mode');
+    } else {
+        // Devicestandard
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme laden
+    chrome.storage.local.get(['theme'], (result) => {
+        applyTheme(result.theme || 'devicestandard');
+    });
+
     // Check if we came back from settings to play reverse animation
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('from') === 'settings') {
@@ -26,6 +46,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const revancedToggle = document.getElementById('revancedToggle');
     const statusText = document.getElementById('statusText');
+    const openSchulnetzBtn = document.getElementById('openSchulnetz');
+
+    if (openSchulnetzBtn) {
+        openSchulnetzBtn.addEventListener('click', () => {
+            chrome.storage.local.get(['schoolId'], (result) => {
+                const schoolId = result.schoolId || 'bbzw';
+                window.open(`https://schulnetz.lu.ch/${schoolId}`, '_blank');
+            });
+        });
+    }
 
     // QR Code Logic
     const qrButton = document.getElementById('qrButton');

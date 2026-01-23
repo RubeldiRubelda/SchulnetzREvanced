@@ -7,9 +7,11 @@ const Modders = {
     translations: [],
     observer: null,
     hideGradesActive: false,
+    warningColorMode: 'standard',
     
     /**
      * Extrahiert den Handy-Login QR-Code und speichert ihn für das Addon
+     * @param {Node} root - Startpunkt für die Suche
      */
     handleHandyQR: function(root = document) {
         // Erweiterte Selektoren für den QR-Code
@@ -51,11 +53,86 @@ const Modders = {
     },
 
     /**
+     * Spezielle Styles für die Landingpage (ohne Pfad)
+     */
+    styleLandingPage: function() {
+        // Prüfen, ob wir uns auf der Landingpage befinden
+        const hasLandingContent = document.querySelector('a[href="ksalp"]') || document.querySelector('a[href="bbzw"]');
+        const isLandingPath = window.location.pathname === '/' || window.location.pathname === '/index.php';
+        
+        if (!hasLandingContent && !isLandingPath) return;
+
+        // Sobald wir wissen, dass es die Landingpage ist, Klasse am Body setzen
+        document.body.classList.add('revanced-landingpage');
+        
+        // Die eigentliche Inhalts-Box finden (die mit dem blauen Hintergrund im Original)
+        const contentBox = document.querySelector('div[style*="background-color: #5e80bb"]') || 
+                           document.querySelector('body > div > div[style*="background-color"]') ||
+                           document.querySelector('.revanced-landingpage > div');
+        
+        if (!contentBox) return;
+
+        // Header hinzufügen falls nicht vorhanden
+        if (!document.querySelector('.revanced-landing-header')) {
+            const header = document.createElement('div');
+            header.className = 'revanced-landing-header';
+            header.innerHTML = `
+                <div class="revanced-logo-glow"></div>
+                <img src="${chrome.runtime.getURL('icons/icon128.png')}" style="width: 64px; height: 64px;">
+                <h1>Schulnetz REvanced</h1>
+                <p class="revanced-tagline">Dein personalisiertes Portal für den Kanton Luzern</p>
+            `;
+            contentBox.prepend(header);
+        }
+
+        // Footer / Info Section hinzufügen
+        if (!document.querySelector('.revanced-landing-footer')) {
+            const footer = document.createElement('div');
+            footer.className = 'revanced-landing-footer';
+            footer.innerHTML = `
+                <div class="footer-grid">
+                    <div class="footer-item">
+                        <h3>Lokal & Sicher</h3>
+                        <p>Keine Passwörter verlassen deinen Browser. Einstellungen werden lokal gespeichert.</p>
+                    </div>
+                    <div class="footer-item">
+                        <h3>Support</h3>
+                        <a href="https://github.com/RubeldiRubelda/SchulnetzREvanced" target="_blank">Projekt auf GitHub</a>
+                    </div>
+                    <div class="footer-item">
+                        <h3>Version</h3>
+                        <p>${chrome.runtime.getManifest().version} ("Luzern Edition")</p>
+                    </div>
+                </div>
+            `;
+            contentBox.appendChild(footer);
+        }
+
+        // Sicherstellen, dass die Original-Zentrierung nicht stört
+        const outerContainer = document.querySelector('body > div');
+        if (outerContainer && outerContainer !== contentBox) {
+            outerContainer.style.position = 'static';
+            outerContainer.style.marginLeft = '0';
+            outerContainer.style.width = '100%';
+            outerContainer.style.display = 'flex';
+            outerContainer.style.flexDirection = 'column';
+            outerContainer.style.alignItems = 'center';
+            outerContainer.style.justifyContent = 'center';
+            outerContainer.style.minHeight = '100vh';
+        }
+    },
+
+    /**
      * Ersetzt das Schulnetz-Logo durch das REvanced-Logo
      * @param {Node} root - Startpunkt für die Suche
      */
     replaceLogo: function(root = document) {
-        const logoSelector = 'img.cls-page--header-row--sn-logo';
+        const logoSelectors = [
+            'img.cls-page--header-row--sn-logo',
+            'img[src*="snlogo-192x192.png"]',
+            'img[src*="snlogo"]',
+            'img[src*="favicon"]'
+        ];
         
         const swap = (img) => {
             const newSrc = chrome.runtime.getURL('icons/icon128.png');
@@ -65,11 +142,15 @@ const Modders = {
             }
         };
 
-        if (root.matches && root.matches(logoSelector)) {
+        const selectorString = logoSelectors.join(',');
+
+        if (root.nodeType === 1 && root.matches(selectorString)) {
             swap(root);
-        } else if (root.querySelector) {
-            const found = root.querySelector(logoSelector);
-            if (found) swap(found);
+        }
+        
+        if (root.querySelectorAll) {
+            const found = root.querySelectorAll(selectorString);
+            found.forEach(swap);
         }
     },
 
@@ -118,7 +199,8 @@ const Modders = {
      * Versteckt Noten, bis sie angeklickt werden
      */
     applyGradeHider: function(root = document) {
-        if (!this.hideGradesActive) return;
+        // Falls weder HideGrades noch Warnfarben aktiv sind, können wir abbrechen
+        if (!this.hideGradesActive && (!this.warningColorMode || this.warningColorMode === 'standard')) return;
 
         // Selektoren für Schulnetz Noten-Elemente
         const selectors = [
@@ -126,7 +208,8 @@ const Modders = {
             'span.cls-noten--note',
             '.cls-page--last-grades-note',
             '.cls-noten--note',
-            '.cls-noten--note-value'
+            '.cls-noten--note-value',
+            '.cls-page--table-noten-note'
         ];
 
         let elements = [];
@@ -136,7 +219,19 @@ const Modders = {
             // Zusätzlich alle Tabellenzellen prüfen, die wie Noten aussehen
             const cells = root.querySelectorAll('td');
             cells.forEach(td => {
-                const text = td.innerText.trim();
+                const text = td.innerText.trim().replace(',', '.');
+                
+                // Prüfen, ob es eine Gewichtung ist (Spaltenüberschrift prüfen)
+                const table = td.closest('table');
+                if (table) {
+                    const index = td.cellIndex;
+                    const header = table.querySelectorAll('th')[index] || table.querySelector('thead tr')?.children[index];
+                    if (header && (header.innerText.toLowerCase().includes('gewicht') || header.innerText.toLowerCase().includes('weight'))) {
+                        return; // Gewichtung überspringen
+                    }
+                }
+
+                // Erkenne Zahlen von 1.0 bis 6.0
                 if (/^[1-6](\.[0-9]+)?$/.test(text)) {
                     if (!elements.includes(td)) elements.push(td);
                 }
@@ -144,14 +239,28 @@ const Modders = {
         }
 
         elements.forEach(el => {
-            const text = el.innerText.trim();
+            const text = el.innerText.trim().replace(',', '.');
+            const gradeNum = parseFloat(text);
+
+            // Warnfarben für schlechte Noten (< 4.0)
+            if (!isNaN(gradeNum) && gradeNum < 4.0 && gradeNum > 0 && this.warningColorMode && this.warningColorMode !== 'standard') {
+                el.classList.remove('revanced-grade-warning-softred', 'revanced-grade-warning-alarmred', 'revanced-grade-warning-darkred');
+                
+                if (this.warningColorMode === 'softred') el.classList.add('revanced-grade-warning-softred');
+                else if (this.warningColorMode === 'alarmred') el.classList.add('revanced-grade-warning-alarmred');
+                else if (this.warningColorMode === 'darkred') el.classList.add('revanced-grade-warning-darkred');
+            }
+
             // Falls die Note zu lang ist (z.B. 4.066666...), runden wir sie für die Optik
             if (/^[1-6]\.[0-9]{4,}$/.test(text)) {
                 const rounded = parseFloat(text).toFixed(3);
                 el.innerText = rounded;
                 el.title = `Original: ${text}`;
             }
-            this.hideElementGrade(el);
+
+            if (this.hideGradesActive) {
+                this.hideElementGrade(el);
+            }
         });
     },
 
@@ -193,6 +302,26 @@ const Modders = {
     },
 
     /**
+     * Wendet die Akzentfarbe an
+     */
+    applyAccentColor: function(color) {
+        if (!color) return;
+        
+        // CSS Variable im :root setzen
+        document.documentElement.style.setProperty('--accent', color);
+        
+        // Hover-Farbe berechnen (etwas heller)
+        // Einfache Methode für Hex-Farben
+        if (color.startsWith('#')) {
+            const r = parseInt(color.slice(1, 3), 16);
+            const g = parseInt(color.slice(3, 5), 16);
+            const b = parseInt(color.slice(5, 7), 16);
+            const hoverColor = `rgba(${r}, ${g}, ${b}, 0.8)`;
+            document.documentElement.style.setProperty('--accent-hover', hoverColor);
+        }
+    },
+
+    /**
      * Ändert das Favicon der Seite
      */
     faviconChange: function() {
@@ -224,12 +353,14 @@ const Modders = {
                             this.replaceTexts(this.translations, node);
                             this.applyGradeHider(node);
                             this.handleHandyQR(node);
+                            this.styleLandingPage(); // Sicherstellen, dass Landingpage-Elemente erkannt werden
                         } else if (node.nodeType === 3) { // Text
                             this.processTextNode(node, this.translations);
                         }
                     });
                 } else if (mutation.type === 'characterData') {
                     this.processTextNode(mutation.target, this.translations);
+                    this.styleLandingPage();
                 }
             }
         });
@@ -247,12 +378,14 @@ const Modders = {
     runAll: function() {
         if (this.initialized) return;
 
-        chrome.storage.local.get(['revancedEnabled', 'theme', 'languageMode', 'hideGrades'], (result) => {
+        chrome.storage.local.get(['revancedEnabled', 'theme', 'languageMode', 'hideGrades', 'accentColor', 'warningColorMode'], (result) => {
             if (result.revancedEnabled === false) return;
 
             this.applyDarkMode(result.theme || 'devicestandard');
+            this.applyAccentColor(result.accentColor || '#bb86fc');
             this.faviconChange();
             this.hideGradesActive = result.hideGrades || false;
+            this.warningColorMode = result.warningColorMode || 'standard';
 
             // Übersetzungen laden
             let rawTranslations = [];
@@ -277,13 +410,13 @@ const Modders = {
                     this.replaceTexts(this.translations, document.body);
                     this.applyGradeHider(document.body);
                     this.handleHandyQR(document.body);
+                    this.styleLandingPage();
                     this.initObserver();
                 } else {
                     setTimeout(scan, 10);
                 }
             };
             scan();
-            
             this.initialized = true;
         });
     }
