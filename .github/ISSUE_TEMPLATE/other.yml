@@ -1,0 +1,14 @@
+name: "❓ Frage oder Feedback"
+description: "Du hast eine Frage oder möchtest einfach Feedback geben?"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: "Nutze dieses Template für allgemeine Fragen, Lob oder sonstiges Feedback zur Erweiterung."
+  - type: textarea
+    id: feedback
+    attributes:
+      label: "Dein Anliegen"
+      description: "Schreib uns, was dir auf dem Herzen liegt."
+    validations:
+      required: true

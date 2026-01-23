@@ -19,3 +19,14 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 [![GitHub Release](https://img.shields.io/badge/GitHub-Download-181717?logo=github&style=for-the-badge)](https://github.com/yourusername/SchulnetzREvanced/releases/latest)
 
 > **Hinweis**: Der Download über die offiziellen Browser-Erweiterungsmärkte wird empfohlen, da die Erweiterung dort automatisch aktualisiert wird.
+
+
+
+
+> **Weiteres**: ⚖️ Haftungsausschluss (Disclaimer)
+
+Dieses Projekt ist **kein** offizielles Angebot des Kantons Luzern oder der Centerboard AG. Es handelt sich um eine unabhängige Open-Source-Erweiterung.
+
+*   **Keine Verbindung:** Es besteht keine offizielle Zusammenarbeit mit den Betreibern von Schulnetz.
+*   **Nutzung auf eigene Gefahr:** Die Erweiterung wird "wie besehen" (as-is) bereitgestellt. Für die Richtigkeit der angezeigten Daten (insb. Noten und Termine) sind weiterhin ausschließlich die offiziellen Anzeigen in Schulnetz maßgeblich.
+*   **Datenschutz:** Das Addon verarbeitet oder speichert keine Anmeldedaten auf externen Servern. Alle Modifikationen finden lokal in deinem Browser statt.

@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Schulnetz REVANCED",
-    "version": "1.0.0.2",
+    "version": "2.0.0.0",
     "description": "Eine Erweiterung zur Verbesserung der Schulnetz-Erfahrung.",
     "permissions": [
         "storage",

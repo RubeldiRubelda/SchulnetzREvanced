@@ -1,0 +1,25 @@
+name: "✨ Änderungswunsch / Feature"
+description: "Schlage eine neue Funktion oder Verbesserung vor"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "Hast du eine Idee, wie Schulnetz REvanced noch besser werden kann? Wir freuen uns über jeden Vorschlag!"
+  - type: textarea
+    id: feature
+    attributes:
+      label: "Was ist dein Vorschlag?"
+      description: "Beschreibe die neue Funktion oder die Änderung so genau wie möglich."
+      placeholder: "Ich fände es cool, wenn..."
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Warum ist das nützlich?"
+      description: "Welches Problem löst diese Funktion?"
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternative Lösungen"
+      description: "Hast du dir schon Gedanken über andere Wege gemacht?"

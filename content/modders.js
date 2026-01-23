@@ -93,7 +93,7 @@ const Modders = {
                 <div class="footer-grid">
                     <div class="footer-item">
                         <h3>Lokal & Sicher</h3>
-                        <p>Keine Passwörter verlassen deinen Browser. Einstellungen werden lokal gespeichert.</p>
+                        <p>Deine Daten werden Lokal verarbeitet.</p>
                     </div>
                     <div class="footer-item">
                         <h3>Support</h3>

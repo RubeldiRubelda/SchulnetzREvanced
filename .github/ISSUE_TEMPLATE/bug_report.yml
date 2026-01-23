@@ -1,0 +1,61 @@
+name: "🐞 Bug Report"
+description: "Melde einen Fehler in der Erweiterung"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Vielen Dank für das Melden eines Fehlers! Bitte fülle die folgenden Informationen aus, damit wir das Problem schnell beheben können."
+  - type: textarea
+    id: description
+    attributes:
+      label: "Beschreibung des Fehlers"
+      description: "Was ist passiert und was hast du stattdessen erwartet?"
+      placeholder: "z.B. Das Logo wird nicht ersetzt auf der Seite X..."
+    validations:
+      required: true
+  - type: dropdown
+    id: school
+    attributes:
+      label: "Betroffene Schule"
+      options:
+        - "BBZW"
+        - "KS Alpenquai"
+        - "KS Beromünster"
+        - "KS Musegg"
+        - "KS Reussbühl"
+        - "KS Schüpfheim"
+        - "KS Seetal"
+        - "KS Sursee"
+        - "KS Willisau"
+        - "Andere / Unbekannt"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Schritte zur Reproduktion"
+      description: "Wie können wir den Fehler nachstellen?"
+      placeholder: "1. Gehe auf Seite X\n2. Klicke auf Y\n3. Siehe Fehler..."
+  - type: input
+    id: version
+    attributes:
+      label: "Installierte Version"
+      description: "Welche Version von REvanced nutzt du? (siehe Addon-Menü)"
+      placeholder: "z.B. 1.2.0"
+  - type: dropdown
+    id: browser
+    attributes:
+      label: "Browser"
+      options:
+        - "Chrome"
+        - "Edge"
+        - "Firefox"
+        - "Brave"
+        - "Andere"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "Zusätzlicher Kontext"
+      description: "Screenshots oder Fehlermeldungen aus der Konsole (F12) helfen uns sehr!"
