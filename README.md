@@ -27,7 +27,8 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 
 <br><br>
 
-**OH NEIN!**: ⚖️ Fehlt deine Schule? - Melde dies per Issue!
+# Oh Nein!
+🏠 Fehlt deine Schule? - Melde dies per Issue!
 <img width="1807" height="897" alt="image" src="https://github.com/user-attachments/assets/25e2118e-1cb5-4612-b669-b8fd7742798a" />
 
 
