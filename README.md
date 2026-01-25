@@ -32,6 +32,8 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 <img width="1807" height="897" alt="image" src="https://github.com/user-attachments/assets/25e2118e-1cb5-4612-b669-b8fd7742798a" />
 
 
+-----------------------------------------------------------------------------------------------------
+
 **Weiteres**: ⚖️ Haftungsausschluss (Disclaimer)
 
 
