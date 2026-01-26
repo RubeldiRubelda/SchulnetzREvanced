@@ -13,9 +13,9 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 ## Browser-Erweiterungen
 > **Information**: Die Addons werden nach und nach zu den Browsern hochgeladen. Dies dauert allerdings noch einiges an Zeit. Bis dahin wird der Direktlink per Github angeboten. 
 
-| Chrome (SOON!) | Edge | Firefox |
+| Chrome | Edge | Firefox |
 |--------|------|---------|
-| [![Chrome Web Store](https://img.shields.io/badge/Chrome-Download-blue?logo=google-chrome&style=for-the-badge)](https://chromewebstore.google.com/search/SchulnetzREvanced) | [![Edge Add-ons](https://img.shields.io/badge/Edge-Download-0078D4?logo=microsoft-edge&style=for-the-badge)](https://microsoftedge.microsoft.com/addons/detail/schulnetz-revanced/nbcknhonbngcmnflhjkjnmilgodkkgla) | [![Firefox Add-ons](https://img.shields.io/badge/Firefox-Download-FF7139?logo=firefox&style=for-the-badge)](https://addons.mozilla.org/de/firefox/addon/schulnetz-revanced/) |
+| [![Chrome Web Store](https://img.shields.io/badge/Chrome-Download-blue?logo=google-chrome&style=for-the-badge)](https://chromewebstore.google.com/detail/schulnetz-revanced/bicppdldaoejckdbdfgafkljileagogg) | [![Edge Add-ons](https://img.shields.io/badge/Edge-Download-0078D4?logo=microsoft-edge&style=for-the-badge)](https://microsoftedge.microsoft.com/addons/detail/schulnetz-revanced/nbcknhonbngcmnflhjkjnmilgodkkgla) | [![Firefox Add-ons](https://img.shields.io/badge/Firefox-Download-FF7139?logo=firefox&style=for-the-badge)](https://addons.mozilla.org/de/firefox/addon/schulnetz-revanced/) |
 
 ## Direkter Download
 
