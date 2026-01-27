@@ -88,12 +88,88 @@ document.addEventListener('DOMContentLoaded', function() {
         if (closeBtn) {
             closeBtn.onclick = () => qrModal.style.display = 'none';
         }
+    }
 
-        window.onclick = (event) => {
-            if (event.target == qrModal) {
-                qrModal.style.display = 'none';
-            }
-        };
+    // Modal click-outside handler
+    window.onclick = (event) => {
+        if (qrModal && event.target == qrModal) {
+            qrModal.style.display = 'none';
+        }
+        if (calendarModal && event.target == calendarModal) {
+            calendarModal.style.display = 'none';
+        }
+    };
+
+    // Calendar logic
+    const calendarButton = document.getElementById('calendarButton');
+    const calendarModal = document.getElementById('calendarModal');
+    const calendarLinksContainer = document.getElementById('calendarLinks');
+    const closeCalendarBtn = document.querySelector('.close-calendar');
+
+    if (calendarButton && calendarModal) {
+        calendarButton.addEventListener('click', () => {
+            calendarModal.style.display = 'block';
+            
+            // Lade Links aus Storage
+            chrome.storage.local.get(['stundenplanLinks'], (result) => {
+                calendarLinksContainer.innerHTML = '';
+                
+                if (result.stundenplanLinks && (result.stundenplanLinks.email || result.stundenplanLinks.sperren)) {
+                    if (result.stundenplanLinks.email) {
+                        const emailBtn = document.createElement('a');
+                        emailBtn.href = result.stundenplanLinks.email;
+                        emailBtn.target = '_blank';
+                        emailBtn.className = 'calendar-action-btn';
+                        emailBtn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                            </svg>
+                            Per E-Mail senden
+                        `;
+                        calendarLinksContainer.appendChild(emailBtn);
+
+                        const copyBtn = document.createElement('button');
+                        copyBtn.className = 'calendar-action-btn copy-btn';
+                        copyBtn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                            </svg>
+                            Link kopieren
+                        `;
+                        copyBtn.addEventListener('click', () => {
+                            navigator.clipboard.writeText(result.stundenplanLinks.email).then(() => {
+                                const originalHtml = copyBtn.innerHTML;
+                                copyBtn.innerHTML = 'Kopiert!';
+                                setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
+                            });
+                        });
+                        calendarLinksContainer.appendChild(copyBtn);
+                    }
+                    
+                    if (result.stundenplanLinks.sperren) {
+                        const sperrenBtn = document.createElement('a');
+                        sperrenBtn.href = result.stundenplanLinks.sperren;
+                        sperrenBtn.target = '_blank';
+                        sperrenBtn.className = 'calendar-action-btn danger';
+                        sperrenBtn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            Stundenplan-Abo sperren
+                        `;
+                        calendarLinksContainer.appendChild(sperrenBtn);
+                    }
+                } else {
+                    calendarLinksContainer.innerHTML = '<p class="empty-msg">Noch keine Daten vorhanden.<br><br>Bitte lade die Schulnetz-Startseite einmal neu, damit das Addon die Links finden kann.</p>';
+                }
+            });
+        });
+
+        if (closeCalendarBtn) {
+            closeCalendarBtn.onclick = () => calendarModal.style.display = 'none';
+        }
     }
 
     if (revancedToggle) {

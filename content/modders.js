@@ -53,6 +53,26 @@ const Modders = {
     },
 
     /**
+     * Extrahiert die Stundenplan-Abo Links und speichert sie für das Addon
+     */
+    handleStundenplanAbo: function(root = document) {
+        const mobileCard = root.querySelector ? root.querySelector('#sn_mobile') : (root.id === 'sn_mobile' ? root : null);
+        if (!mobileCard) return;
+
+        const emailLink = mobileCard.querySelector('a[href*="action=cal"]');
+        const sperrenLink = mobileCard.querySelector('a[href*="action=sperren"]');
+
+        const links = {
+            email: emailLink ? emailLink.href : null,
+            sperren: sperrenLink ? sperrenLink.href : null
+        };
+
+        if (links.email || links.sperren) {
+            chrome.storage.local.set({ stundenplanLinks: links });
+        }
+    },
+
+    /**
      * Spezielle Styles für die Landingpage (ohne Pfad)
      */
     styleLandingPage: function() {
@@ -353,6 +373,7 @@ const Modders = {
                             this.replaceTexts(this.translations, node);
                             this.applyGradeHider(node);
                             this.handleHandyQR(node);
+                            this.handleStundenplanAbo(node);
                             this.styleLandingPage(); // Sicherstellen, dass Landingpage-Elemente erkannt werden
                         } else if (node.nodeType === 3) { // Text
                             this.processTextNode(node, this.translations);
@@ -410,6 +431,7 @@ const Modders = {
                     this.replaceTexts(this.translations, document.body);
                     this.applyGradeHider(document.body);
                     this.handleHandyQR(document.body);
+                    this.handleStundenplanAbo(document.body);
                     this.styleLandingPage();
                     this.initObserver();
                 } else {
