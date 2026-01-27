@@ -5,7 +5,13 @@ const GITHUB_REPO = 'RubeldiRubelda/SchulnetzREvanced';
 const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
 const CHECK_INTERVAL_HOURS = 6; // Alle 6 Stunden prüfen
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener((details) => {
+    if (details.reason === "install") {
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("content/frontend/oobe.html")
+        });
+    }
+
     // Standardmäßig aktivieren
     chrome.storage.local.get(['revancedEnabled'], function(result) {
         if (result.revancedEnabled === undefined) {

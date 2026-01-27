@@ -16,6 +16,12 @@ function applyTheme(theme) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Versionsnummer aus Manifest laden
+    const versionSpan = document.getElementById('addonVersion');
+    if (versionSpan) {
+        versionSpan.textContent = chrome.runtime.getManifest().version;
+    }
+
     // Theme laden
     chrome.storage.local.get(['theme'], (result) => {
         applyTheme(result.theme || 'devicestandard');

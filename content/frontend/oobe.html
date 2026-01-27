@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen bei Schulnetz REvanced</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .oobe-container {
+            max-width: 600px;
+            background: #252525;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+        }
+        .oobe-step {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .oobe-step.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .logo-large {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 24px auto;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #9c27b0;
+        }
+        p {
+            line-height: 1.6;
+            color: #bbb;
+            margin-bottom: 24px;
+        }
+        .features {
+            text-align: left;
+            margin-bottom: 30px;
+            display: grid;
+            gap: 15px;
+            flex: 1;
+        }
+        .setup-section {
+            background: rgba(0,0,0,0.2);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: left;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            flex: 1;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        .setup-section h2 {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #9c27b0;
+        }
+        .setup-row {
+            margin-bottom: 16px;
+        }
+        .setup-row label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .setup-row select, .school-search-input {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .setup-row select:focus, .school-search-input:focus {
+            border-color: #9c27b0;
+        }
+        .school-search-container {
+            position: relative;
+        }
+        .school-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #333;
+            border: 1px solid #444;
+            border-top: none;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 100;
+            border-radius: 0 0 6px 6px;
+            display: none;
+        }
+        .school-results.visible {
+            display: block;
+        }
+        .school-option {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .school-option:hover {
+            background: #444;
+        }
+        .school-option.selected {
+            background: #9c27b0;
+            color: white;
+        }
+        .color-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .color-dot.active {
+            border-color: white;
+            transform: scale(1.1);
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .feature-icon {
+            color: #9c27b0;
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .start-btn {
+            background: #9c27b0;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        .start-btn:hover {
+            background: #7b1fa2;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="oobe-container">
+        <!-- Step 1: Welcome -->
+        <div id="step1" class="oobe-step active">
+            <img src="../../icons/icon128.png" alt="Logo" class="logo-large">
+            <h1>Willkommen!</h1>
+            <p>Vielen Dank für die Installation! Schulnetz REvanced verbessert dein Erlebnis auf der Schulnetz-Plattform mit modernen Features und einem schöneren Design.</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+                            <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.37 2.37 0 0 0 1.482 1.482l1.937.645c.33.11.33.576 0 .686l-1.937.645a2.37 2.37 0 0 0-1.482 1.482l-.645 1.937c-.11.33-.576.33-.686 0l-.645-1.937a2.37 2.37 0 0 0-1.482-1.482l-1.937-.645c-.33-.11-.33-.576 0-.686l1.937-.645a2.37 2.37 0 0 0 1.482-1.482l.645-1.937zM12.025.56a.209.209 0 0 1 .382 0l.272.818a.79.79 0 0 0 .493.493l.818.272a.209.209 0 0 1 0 .382l-.818.272a.79.79 0 0 0-.493.493l-.272.818a.209.209 0 0 1-.382 0l-.272-.818a.79.79 0 0 0-.493-.493l-.818-.272a.209.209 0 0 1 0-.382l.818-.272a.79.79 0 0 0 .493-.493l.272-.818zM3.923 2.181a.239.239 0 0 1 .437 0l.31.931a.903.903 0 0 0 .564.564l.931.31a.239.239 0 0 1 0 .437l-.931.31a.903.903 0 0 0-.564.564l-.31.931a.239.239 0 0 1-.437 0l-.31-.931a.903.903 0 0 0-.564-.564l-.931-.31a.239.239 0 0 1 0-.437l.931-.31a.903.903 0 0 0 .564-.564l.31-.931z"/>
+                        </svg>
+                    </span>
+                    <span><strong>Modernes Design:</strong> Ein frisches, übersichtliches Interface für dein tägliches Schulnetz.</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg>
+                    </span>
+                    <span><strong>Handy-Login:</strong> Erzeuge QR-Codes für einen schnellen Login auf mobilen Geräten.</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg>
+                    </span>
+                    <span><strong>Stundenplan-Abo:</strong> Integriere deinen Stundenplan direkt in deinen Kalender.</span>
+                </div>
+            </div>
+
+            <button id="nextToSetup" class="start-btn">
+                Ersteinrichtung beginnen 
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Step 2: Setup -->
+        <div id="step2" class="oobe-step">
+            <h1>Personalisieren</h1>
+            <div class="setup-section">
+                <div class="setup-row">
+                    <label for="schoolSearch">Meine Schule suchen (Name oder Kürzel)</label>
+                    <div class="school-search-container">
+                        <input type="text" id="schoolSearch" class="school-search-input" placeholder="z.B. BBZW oder Alpenquai..." autocomplete="off">
+                        <div id="schoolResults" class="school-results"></div>
+                    </div>
+                </div>
+
+                <div class="setup-row">
+                    <label for="themeSelect">Erscheinungsbild</label>
+                    <select id="themeSelect">
+                        <option value="devicestandard">Gerätestandard</option>
+                        <option value="light">Hell</option>
+                        <option value="dark" selected>Dunkel</option>
+                    </select>
+                </div>
+
+                <div class="setup-row">
+                    <label for="langSelect">Sprachstil</label>
+                    <select id="langSelect">
+                        <option value="du">"Du" Form (informell)</option>
+                        <option value="sie">"Sie" Form (formell)</option>
+                    </select>
+                </div>
+
+                <div class="setup-row">
+                    <label>Akzentfarbe</label>
+                    <div class="color-selector" id="colorSelector">
+                        <div class="color-dot active" data-color="#bb86fc" style="background-color: #bb86fc;"></div>
+                        <div class="color-dot" data-color="#2196F3" style="background-color: #2196F3;"></div>
+                        <div class="color-dot" data-color="#4CAF50" style="background-color: #4CAF50;"></div>
+                        <div class="color-dot" data-color="#FF9800" style="background-color: #FF9800;"></div>
+                        <div class="color-dot" data-color="#f44336" style="background-color: #f44336;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="finishOOBE" class="start-btn">
+                Einrichtung abschließen 
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l2.571 2.583 5.9-5.934z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="oobe.js"></script>
+</body>
+</html>
