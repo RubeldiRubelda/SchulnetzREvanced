@@ -1,0 +1,14 @@
+name: "🏠 Meine Schule fehlt!"
+description: "Fehlt deine Schulnetz Schule? Schlage Sie hier vor!"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: "Nutze dieses Template um deine Schule einzureichen."
+  - type: textarea
+    id: feedback
+    attributes:
+      label: "Dein Anliegen"
+      description: "Bitte nenne den Namen der Schule, den Kanton & die Schulnetz url. (z.b schulnetz.lu.ch)."
+    validations:
+      required: true
