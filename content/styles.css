@@ -1,8 +1,19 @@
 /* styles.css - Basis-Styles für Modifikationen */
 
+@font-face {
+  font-family: 'Geist';
+  src: url('chrome-extension://__MSG_@@extension_id__/content/fonts/Geist-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
     --accent: #9c27b0; /* Default Schulnetz Violet approx or custom */
     --accent-hover: #ba68c8;
+}
+
+*:not(i) {
+    font-family: var(--font-geist) !important;
 }
 
 /* Logo initial verstecken, um das Flackern zu verhindern */
@@ -31,11 +42,13 @@ html.revanced-dark {
     --text-secondary: #aaaaaa;
     --border: #333333;
     --table-row-hover: #2a2a2a;
+    --font-geist: "Geist", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 html.revanced-dark body {
     background-color: var(--bg-deep) !important;
     color: var(--text-primary) !important;
+    font-family: var(--font-geist) !important;
 }
 
 /* Header & Navigation */
@@ -124,7 +137,6 @@ body.revanced-landingpage {
     align-items: center !important;
     min-height: 100vh !important;
     margin: 0 !important;
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
 }
 
 body.revanced-landingpage > div {
@@ -134,6 +146,10 @@ body.revanced-landingpage > div {
     width: 95% !important;
     max-width: 1000px !important;
     animation: revanced-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.revanced-landingpage ul {
+    font-family: var(--font-geist);
 }
 
 .revanced-landing-header {
