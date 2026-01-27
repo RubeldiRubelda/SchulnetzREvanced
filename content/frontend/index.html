@@ -27,6 +27,12 @@
                 <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
             </svg>
         </button>
+        <button id="calendarButton" class="calendar-btn" title="Stundenplan Abo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+            </svg>
+        </button>
     </header>
     
     <!-- Update Banner -->
@@ -67,6 +73,29 @@
                 <small>Bitte stelle sicher, dass du im Schulnetz eingeloggt bist.</small>
             </div>
             <img id="qrImage" src="" alt="QR Code" style="display:none; width: 200px; height: 200px; margin: 0 auto;">
+        </div>
+    </div>
+
+    <!-- Calendar Modal Overlay -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close-calendar">&times;</span>
+            <div class="modal-header-with-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--accent, #9c27b0)" viewBox="0 0 16 16">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                </svg>
+                <h3>Stundenplan-Abo</h3>
+            </div>
+            
+            <p>Verwalte dein Stundenplan-Abo direkt von hier.</p>
+            
+            <div id="calendarLinks" class="calendar-actions">
+                <p class="empty-msg">Noch keine Daten vorhanden.<br><br>Bitte lade die Schulnetz-Startseite einmal neu, damit das Addon die Links finden kann.</p>
+            </div>
+            
+            <div class="modal-footer-hint">
+                <small>Hinweis: Änderungen werden direkt im Schulnetz wirksam.</small>
+            </div>
         </div>
     </div>
 

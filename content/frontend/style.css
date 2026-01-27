@@ -50,6 +50,7 @@
         body.dark-mode .settings-link, 
         body.dark-mode .back-link,
         body.dark-mode .qr-btn,
+        body.dark-mode .calendar-btn,
         body.dark-mode .open-btn {
             background-color: rgba(255, 255, 255, 0.1);
             color: #bbb;
@@ -58,6 +59,7 @@
         body.dark-mode .settings-link:hover, 
         body.dark-mode .back-link:hover,
         body.dark-mode .qr-btn:hover,
+        body.dark-mode .calendar-btn:hover,
         body.dark-mode .open-btn:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
@@ -106,7 +108,7 @@
         .open-btn {
             position: absolute;
             top: 0;
-            right: 84px;
+            right: 126px; /* Drittes Icon */
             color: #555;
             transition: all 0.2s ease-in-out;
             text-decoration: none;
@@ -121,6 +123,42 @@
             cursor: pointer;
             z-index: 10;
             padding: 0;
+        }
+
+        .open-btn svg {
+            display: block;
+            pointer-events: none;
+        }
+
+        .calendar-btn {
+            position: absolute;
+            top: 0;
+            right: 84px; /* Zweites Icon */
+            color: #555;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            padding: 0;
+        }
+
+        .calendar-btn svg {
+            display: block;
+            pointer-events: none;
+        }
+
+        .calendar-btn:hover {
+            color: #000;
+            transform: scale(1.1);
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         .open-btn:hover {
@@ -508,4 +546,110 @@
 
         .update-close-btn:hover {
             background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Calendar Modal specific */
+        .calendar-actions {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .calendar-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+            padding: 12px;
+            background-color: var(--accent, #9c27b0);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .calendar-action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .calendar-action-btn.danger {
+            background-color: #d32f2f;
+        }
+
+        .calendar-action-btn.copy-btn {
+            background-color: #546e7a;
+            font-size: 13px;
+        }
+
+        .calendar-action-btn svg {
+            flex-shrink: 0;
+        }
+
+        .empty-msg {
+            color: #888;
+            font-style: italic;
+            font-size: 13px;
+            margin: 20px 0;
+        }
+
+        .close-calendar {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .close-calendar:hover {
+            color: black;
+        }
+
+        body.dark-mode .calendar-action-btn:not(.danger) {
+            background-color: var(--accent, #bb86fc);
+            color: white;
+        }
+
+        body.dark-mode .calendar-action-btn:not(.danger):hover {
+            background-color: var(--accent-hover, #ba68c8);
+        }
+
+        body.dark-mode .close-calendar:hover {
+            color: white;
+        }
+
+        .modal-header-with-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header-with-icon h3 {
+            margin: 0;
+        }
+
+        .modal-footer-hint {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            color: #888;
+        }
+
+        body.dark-mode .modal-footer-hint {
+            border-top-color: #333;
+        }
+
+        body.dark-mode .modal-content {
+            background-color: #252525;
+            color: #e0e0e0;
         }

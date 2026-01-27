@@ -31,6 +31,12 @@ html.revanced-dark {
     --text-secondary: #aaaaaa;
     --border: #333333;
     --table-row-hover: #2a2a2a;
+    
+    /* Scheduler / Agenda Variables */
+    --dhx-scheduler-lightbox-background: #252525;
+    --dhx-scheduler-lightbox-color: #e0e0e0;
+    --dhx-scheduler-lightbox-border: 1px solid #333333;
+    --dhx-scheduler-popup-border-radius: 8px;
 }
 
 html.revanced-dark body {
@@ -75,8 +81,9 @@ html.revanced-dark .cls-page--mainnav-small {
 }
 
 html.revanced-dark .cls-page--leftmenu-active {
-    background-color: var(--table-row-hover) !important;
-    border-left: 3px solid var(--accent) !important;
+    background-color: rgba(156, 39, 176, 0.1) !important;
+    border-left: 4px solid var(--accent) !important;
+    color: var(--accent) !important;
 }
 
 html.revanced-dark .cls-page--navlist-spacer-bottom {
@@ -309,7 +316,8 @@ body.revanced-landingpage a:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 /* Tables - Die Notenliste etc. */
-html.revanced-dark .mdl-data-table {
+html.revanced-dark .mdl-data-table,
+html.revanced-dark .cls-table {
     background-color: var(--bg-card) !important;
     color: var(--text-primary) !important;
     border: 1px solid var(--border) !important;
@@ -317,23 +325,50 @@ html.revanced-dark .mdl-data-table {
 
 html.revanced-dark .mdl-data-table thead,
 html.revanced-dark .mdl-data-table thead tr,
-html.revanced-dark .mdl-data-table thead th {
+html.revanced-dark .mdl-data-table thead th,
+html.revanced-dark .mdl-data-table th,
+html.revanced-dark .mdl-table--listtable th,
+html.revanced-dark .cls-sticky-header {
     background-color: var(--bg-surface) !important;
     color: var(--accent) !important;
     border-bottom: 1px solid var(--border) !important;
 }
 
-html.revanced-dark .mdl-data-table tbody tr {
-    border-top: 1px solid var(--border) !important;
+/* Filterzeilen in komplexen Tabellen */
+html.revanced-dark .suchfeld, 
+html.revanced-dark .cls-sticky-filter,
+html.revanced-dark .mdl-table--no-hover {
+    background-color: var(--bg-deep) !important;
 }
 
-html.revanced-dark .mdl-data-table tbody tr:hover {
+html.revanced-dark .mdl-data-table tbody tr,
+html.revanced-dark .mdl-table--cls-table-row {
+    border-top: 1px solid var(--border) !important;
+    background-color: var(--bg-card);
+}
+
+html.revanced-dark .mdl-data-table tbody tr:hover,
+html.revanced-dark .mdl-table--cls-table-row:not(.mdl-table--no-hover):hover {
     background-color: var(--table-row-hover) !important;
 }
 
-html.revanced-dark .mdl-data-table td {
+html.revanced-dark .mdl-data-table td,
+html.revanced-dark .mdl-table--cls-table-cell {
     color: var(--text-primary) !important;
     border-bottom: 1px solid var(--border) !important;
+}
+
+/* Pagination */
+html.revanced-dark .mdl-table--pagination {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-secondary) !important;
+    border-top: 1px solid var(--border) !important;
+}
+
+/* Header-Bereich über Tabellen (Titel & Icons) */
+html.revanced-dark .tbl-header-line,
+html.revanced-dark .cls-table--header-area {
+    background-color: transparent !important;
 }
 
 /* Cards & Containers */
@@ -495,6 +530,74 @@ html.revanced-dark .dhx_cal_tab.active {
     color: white !important;
 }
 
+/* Agenda Popups (Lightbox) */
+html.revanced-dark .dhx_cal_light,
+html.revanced-dark .dhx_cal_light_responsive,
+html.revanced-dark .dhx_cal_light_readonly {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_cal_ltitle,
+html.revanced-dark .dhx_cal_light .dhx_cal_header {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_cal_larea {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_cal_lsection {
+    background-color: var(--bg-surface) !important;
+    color: var(--accent) !important;
+    border-bottom: 1px solid var(--border) !important;
+    border-top: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_btn_set,
+html.revanced-dark .dhx_cal_light .dhx_btn_set div {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    cursor: pointer;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_save_btn_set,
+html.revanced-dark .dhx_cal_light .dhx_save_btn_set div {
+    background-color: var(--accent) !important;
+    color: white !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_cancel_btn_set,
+html.revanced-dark .dhx_cal_light .dhx_cancel_btn_set div {
+    background-color: #333 !important;
+    color: var(--text-primary) !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_cal_ltext {
+    color: var(--text-primary) !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+html.revanced-dark .dhx_cal_light .dhx_cal_ltext textarea,
+html.revanced-dark .dhx_cal_light .dhx_cal_ltext input {
+    background-color: #2d2d2d !important;
+    color: white !important;
+    border: 1px solid var(--border) !important;
+}
+
+html.revanced-dark .dhx_cal_cover {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
 /* Heute Button und Navi-Pfeile */
 html.revanced-dark .dhx_cal_today_button,
 html.revanced-dark .dhx_cal_prev_button,
@@ -532,8 +635,9 @@ html.revanced-dark #footer {
     display: none !important;
 }
 
-/* HANDY QR CODE AUSBLENDEN */
-/* Wir verstecken den Bereich auf der Startseite, da er nun im Addon ist */
+/* HANDY QR CODE AUSBLENDEN & SN MOBILE CARD */
+/* Wir verstecken diese Bereiche, da sie nun im Addon integriert sind */
+#sn_mobile,
 #qrimage_pwa_appstore,
 #qrimage_pwa,
 img.cls-page--login-qr-code,
