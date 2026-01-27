@@ -52,8 +52,20 @@
     },
     "web_accessible_resources": [
         {
-          "resources": ["icons/*.png"],
-          "matches": ["*://schulnetz.lu.ch/*"]
+            "resources": [
+                "icons/*.png"
+            ],
+            "matches": [
+                "*://schulnetz.lu.ch/*"
+            ]
+        },
+        {
+            "resources": [
+                "content/fonts/*"
+            ],
+            "matches": [
+                "*://schulnetz.lu.ch/*"
+            ]
         }
     ]
 }
