@@ -79,7 +79,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 30px;
-            min-height: 48px; /* Höhe des Logos */
+            min-height: 48px;
         }
 
         .settings-link, .back-link {
@@ -108,7 +108,7 @@
         .open-btn {
             position: absolute;
             top: 0;
-            right: 126px; /* Drittes Icon */
+            right: 126px; 
             color: #555;
             transition: all 0.2s ease-in-out;
             text-decoration: none;
@@ -133,7 +133,7 @@
         .calendar-btn {
             position: absolute;
             top: 0;
-            right: 84px; /* Zweites Icon */
+            right: 84px; 
             color: #555;
             transition: all 0.2s ease-in-out;
             text-decoration: none;
@@ -170,7 +170,7 @@
         .qr-btn {
             position: absolute;
             top: 0;
-            right: 42px; /* Etwas mehr Abstand zum Zahnrad */
+            right: 42px; 
             color: #555;
             transition: all 0.2s ease-in-out;
             text-decoration: none;
@@ -184,7 +184,7 @@
             border: none;
             cursor: pointer;
             z-index: 10;
-            padding: 0; /* Wichtig: Padding von allgemeinem Button-Style zurücksetzen */
+            padding: 0; 
         }
 
         .qr-btn svg {
@@ -198,7 +198,6 @@
             background-color: rgba(0, 0, 0, 0.1);
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -252,7 +251,6 @@
             margin-top: 40px;
         }
 
-        /* The switch - the box around the slider */
         .switch {
             position: relative;
             display: inline-block;
@@ -260,14 +258,12 @@
             height: 34px;
         }
 
-        /* Hide default HTML checkbox */
         .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
 
-        /* The slider */
         .slider {
             position: absolute;
             cursor: pointer;
@@ -306,7 +302,6 @@
             transform: translateX(26px);
         }
 
-        /* Rounded sliders */
         .slider.round {
             border-radius: 34px;
         }
@@ -458,13 +453,12 @@
             }
         }
 
-        /* Update Banner Styles */
         .update-banner {
-            background: linear-gradient(135deg, #FF9800 0%, #FF7043 100%);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #ff9700 0%);
+            --6bis7kasuechesdirselberuupx: 5px;
+            border-radius: var(--6bis7kasuechesdirselberuupx);
             padding: 16px;
             margin: 10px 0 20px 0;
-            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
             animation: slideDown 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
@@ -558,7 +552,6 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
-        /* Calendar Modal specific */
         .calendar-actions {
             margin-top: 20px;
             display: flex;

@@ -374,7 +374,9 @@ const Modders = {
                             this.applyGradeHider(node);
                             this.handleHandyQR(node);
                             this.handleStundenplanAbo(node);
-                            this.styleLandingPage(); // Sicherstellen, dass Landingpage-Elemente erkannt werden
+                            this.styleLandingPage();
+                            this.styleSettingsPage();
+                            this.removeWhiteBackgrounds();
                         } else if (node.nodeType === 3) { // Text
                             this.processTextNode(node, this.translations);
                         }
@@ -382,6 +384,7 @@ const Modders = {
                 } else if (mutation.type === 'characterData') {
                     this.processTextNode(mutation.target, this.translations);
                     this.styleLandingPage();
+                    this.styleSettingsPage();
                 }
             }
         });
@@ -434,6 +437,7 @@ const Modders = {
                     this.handleStundenplanAbo(document.body);
                     this.styleLandingPage();
                     this.initObserver();
+                    this.styleSettingsPage();
                 } else {
                     setTimeout(scan, 10);
                 }
@@ -441,6 +445,145 @@ const Modders = {
             scan();
             this.initialized = true;
         });
+    },
+
+    /**
+     * Spezielle Styles für die "Mein schulNetz" / "Mein REvanced" Seite
+     */
+    styleSettingsPage: function() {
+        if (!document.querySelector('.cls-form') || !document.getElementById('frm-header-line')) return;
+
+        // NUR im Dark Mode die speziellen Styles anwenden
+        const isDarkMode = document.documentElement.classList.contains('revanced-dark');
+
+        // Header verschönern (nur im Dark Mode)
+        const header = document.getElementById('frm-header-line');
+        if (header && !header.classList.contains('styles-applied') && isDarkMode) {
+            header.classList.add('styles-applied');
+            
+            // Icon vor den Titel setzen (optional)
+            const title = header.querySelector('h3');
+            if (title && !title.querySelector('i')) {
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-user-gear';
+                icon.style.marginRight = '12px';
+                icon.style.color = 'var(--accent)';
+                title.prepend(icon);
+            }
+        }
+
+        // Formgroups optimieren (nur im Dark Mode)
+        if (isDarkMode) {
+            const cards = document.querySelectorAll('.mdl-card--cls-form');
+            cards.forEach(card => {
+                // Dropdown-Button (Chevron) Styling fix
+                const toggleBtn = card.querySelector('span[onclick*="toggleFormGroup"]');
+                if (toggleBtn) {
+                    toggleBtn.style.cursor = 'pointer';
+                    toggleBtn.style.display = 'flex';
+                    toggleBtn.style.alignItems = 'center';
+                    toggleBtn.style.justifyContent = 'space-between';
+                    toggleBtn.style.width = '100%';
+                }
+            });
+        }
+
+        // WICHTIG: Alle weißen Hintergründe entfernen (nur im Dark Mode)
+        this.removeWhiteBackgrounds();
+    },
+
+    /**
+     * Entfernt alle weißen Hintergründe von Elementen - NUR im Dark Mode!
+     */
+    removeWhiteBackgrounds: function() {
+        const isDarkMode = document.documentElement.classList.contains('revanced-dark');
+        
+        // Wenn Light Mode: Inline-Styles entfernen (Reset)
+        if (!isDarkMode) {
+            // Alle Elemente mit gesetzten Inline-Styles zurücksetzen
+            document.querySelectorAll('.cls-field-infos').forEach(el => {
+                el.style.removeProperty('background-color');
+                el.style.removeProperty('color');
+            });
+            document.querySelectorAll('div[style*="overflow"]').forEach(el => {
+                // Nur die von uns gesetzten Properties entfernen
+                el.style.removeProperty('border-radius');
+            });
+            document.querySelectorAll('.cls-field-infos label, div[style*="overflow"] label').forEach(el => {
+                el.style.removeProperty('color');
+                el.style.removeProperty('background-color');
+            });
+            const buttonsContainer = document.getElementById('buttons-container');
+            if (buttonsContainer) {
+                buttonsContainer.style.removeProperty('background-color');
+            }
+            return;
+        }
+
+        // Dark Mode: Styles anwenden
+
+        // Alle Elemente mit cls-field-infos (Checkbox-Listen)
+        document.querySelectorAll('.cls-field-infos').forEach(el => {
+            el.style.backgroundColor = '#121212';
+            el.style.color = '#e0e0e0';
+        });
+
+        // Alle overflow:auto divs (Listboxen)
+        document.querySelectorAll('div[style*="overflow"]').forEach(el => {
+            if (el.style.overflow === 'auto' || el.style.overflowY === 'auto') {
+                el.style.backgroundColor = '#121212';
+                el.style.color = '#e0e0e0';
+                el.style.border = '1px solid #333';
+                el.style.borderRadius = '8px';
+            }
+        });
+
+        // Alle Labels in diesen Bereichen
+        document.querySelectorAll('.cls-field-infos label, div[style*="overflow"] label').forEach(el => {
+            el.style.color = '#e0e0e0';
+            el.style.backgroundColor = 'transparent';
+        });
+
+        // Buttons-Container
+        const buttonsContainer = document.getElementById('buttons-container');
+        if (buttonsContainer) {
+            buttonsContainer.style.backgroundColor = '#1e1e1e';
+        }
+
+        // Global container und alle children
+        const globalContainer = document.getElementById('global-container');
+        if (globalContainer) {
+            // Alle main-Elemente darin
+            globalContainer.querySelectorAll('main').forEach(main => {
+                main.style.backgroundColor = '#121212';
+            });
+            
+            // Alle divs die direct children sind
+            globalContainer.querySelectorAll(':scope > main > div, :scope > main > main').forEach(el => {
+                el.style.backgroundColor = '#121212';
+            });
+        }
+
+        // nav-drawer und seine Kinder
+        const navDrawer = document.getElementById('nav-drawer');
+        if (navDrawer) {
+            navDrawer.style.backgroundColor = '#121212';
+            navDrawer.querySelectorAll('main, > div').forEach(el => {
+                el.style.backgroundColor = '#121212';
+            });
+        }
+
+        // Alle br-Elemente nach dem Formular entfernen
+        document.querySelectorAll('.cls-form ~ br, form ~ br, #cls-form ~ br').forEach(br => {
+            br.style.display = 'none';
+        });
+
+        // Sticky Header Fix - Position zurücksetzen
+        const stickyHeader = document.querySelector('.cls-form--header-line');
+        if (stickyHeader) {
+            stickyHeader.style.position = 'relative';
+            stickyHeader.style.zIndex = '1';
+        }
     }
 };
 

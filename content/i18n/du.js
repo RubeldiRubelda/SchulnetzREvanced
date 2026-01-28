@@ -13,8 +13,7 @@ window.REvanced_Translations_Du = [
   { old: "Absenzen", new: "Abwesenheiten" },
   { old: "Mein schulNetz", new: "Mein REvanced" },
   { old: "schulNetz App", new: "Schulnetz Revanced App - In Entwicklung" },
-  {
-    old: " Laden Sie die offizielle schulNetz App aus dem jeweiligen Store. Die App ist verfügbar auf:",
-    new: " Schulnetz Revanced ist momentan nur im Browser verfügbar. Wir arbeiten an einer Mobile App 😉",
-  },
+  { old: "Melden Sie bitte fehlerhafte Einträge Ihrer Klassenlehrperson. Ihre Angaben werden z.B. auf Rundtelefon und Adress-Listen benutzt. Einige Angaben können Sie auch selbständig unter Mein REvanced ändern.",
+    new: "Melde fehlerhafte Einträge bitte an die Klassenlehrperson. Deine Angaben werden z.B auf Rundtelefonen & Adresslisten benutzt. Einige Angaben kannst du auch selbständig ändern. Hier klicken:"
+  }
 ];

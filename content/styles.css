@@ -49,10 +49,13 @@ html.revanced-dark {
     --dhx-scheduler-lightbox-color: #e0e0e0;
     --dhx-scheduler-lightbox-border: 1px solid #333333;
     --dhx-scheduler-popup-border-radius: 8px;
+    
+    /* WICHTIG: Hintergrund auf Root-Level */
+    background-color: #121212 !important;
 }
 
 html.revanced-dark body {
-    background-color: var(--bg-deep) !important;
+    background-color: #121212 !important;
     color: var(--text-primary) !important;
     font-family: var(--font-geist) !important;
 }
@@ -134,6 +137,18 @@ html.revanced-dark .cls-page--header-row--logo-gradient {
 html.revanced-dark main, 
 html.revanced-dark .mdl-layout__content, 
 html.revanced-dark .cls-page--content-container {
+    background-color: var(--bg-deep) !important;
+}
+
+/* Nested main elements fix - verhindert weiße Ränder */
+html.revanced-dark main main,
+html.revanced-dark .mdl-layout__content .mdl-layout__content {
+    background-color: var(--bg-deep) !important;
+}
+
+/* Global container */
+html.revanced-dark #global-container,
+html.revanced-dark .mdl-layout {
     background-color: var(--bg-deep) !important;
 }
 /* --- LANDINGPAGE STYLES --- */
@@ -710,4 +725,447 @@ body.revanced-active td.revanced-grade-warning-darkred,
 body.revanced-active span.revanced-grade-warning-darkred {
     color: #b71c1c !important; /* Dark Red */
     font-weight: 900 !important;
+}
+
+/* --- SETTINGS PAGE REvanced (Mein REvanced) --- */
+html.revanced-dark .cls-form--header-line {
+    background: var(--bg-surface) !important;
+    border-radius: 0 !important;
+    padding: 16px 24px !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 2px solid var(--accent) !important;
+    /* WICHTIG: z-index niedriger als die Karten */
+    z-index: 1 !important;
+    position: relative !important;
+}
+
+/* Wenn der Header sticky ist, soll er NICHT über den Inhalt gehen */
+html.revanced-dark .cls-form--header-line.sticky {
+    position: relative !important;
+    top: auto !important;
+}
+
+/* Deaktiviere das Sticky-Verhalten komplett */
+html.revanced-dark .cls-form--header-line--stuck-top,
+html.revanced-dark .cls-form--header-line--stuck-bottom {
+    position: relative !important;
+    top: auto !important;
+    z-index: 1 !important;
+}
+
+html.revanced-dark .cls-form--header-no-break h3 {
+    margin: 0 !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+}
+
+html.revanced-dark .mdl-card--cls-form {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+    overflow: hidden !important;
+}
+
+/* Header innerhalb der Karten (z.B. Kontaktangaben) */
+html.revanced-dark .mdl-card--cls-form .mdl-card__actions {
+    background: rgba(255,255,255,0.02) !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 12px 20px !important;
+}
+
+html.revanced-dark .mdl-card--cls-form .mdl-card__actions span,
+html.revanced-dark .mdl-card--cls-form span[onclick*="toggleFormGroup"] {
+    color: var(--accent) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Form-Rows und Labels */
+html.revanced-dark .mdl-card--cls-form table {
+    margin: 10px 0 !important;
+}
+
+html.revanced-dark .mdl-card--cls-form td {
+    padding: 12px 20px !important;
+    border: none !important;
+}
+
+html.revanced-dark .mdl-card--cls-form label,
+html.revanced-dark .mdl-card--cls-form .cls-form--label {
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+}
+
+html.revanced-dark .mdl-card--cls-form input[type="text"],
+html.revanced-dark .mdl-card--cls-form input[type="password"],
+html.revanced-dark .mdl-card--cls-form select,
+html.revanced-dark .mdl-card--cls-form textarea {
+    background: #121212 !important;
+    border: 1px solid #333 !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    transition: all 0.2s ease !important;
+    max-width: 500px !important;
+}
+
+html.revanced-dark .mdl-card--cls-form input:focus,
+html.revanced-dark .mdl-card--cls-form select:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2) !important;
+    outline: none !important;
+}
+
+/* Spezieller Style für Checkboxen in Listen (Stundenplan-Abo) */
+html.revanced-dark .mdl-card--cls-form .mdl-checkbox.is-checked .mdl-checkbox__tick-outline {
+    background: var(--accent) !important;
+}
+
+/* Button Bar am Ende */
+html.revanced-dark .cls-form--buttons,
+html.revanced-dark .mdl-card__actions:has(button[type="submit"]) {
+    background: var(--bg-surface) !important;
+    padding: 20px 24px !important;
+    margin-top: 20px !important;
+    border-top: 1px solid var(--border) !important;
+    display: flex !important;
+    gap: 12px !important;
+}
+
+/* Trennlinie vor Buttons entfernen (hr Elemente) */
+html.revanced-dark hr,
+html.revanced-dark .cls-form hr,
+html.revanced-dark .mdl-card hr {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+/* Weiße Bereiche/Abstände vor und nach Buttons verstecken */
+html.revanced-dark .mdl-card--cls-form::before,
+html.revanced-dark .mdl-card--cls-form::after {
+    background: transparent !important;
+}
+
+/* Spacer-Elemente vor Buttons */
+html.revanced-dark div[style*="height: 20px"],
+html.revanced-dark div[style*="height: 30px"],
+html.revanced-dark div[style*="background: white"],
+html.revanced-dark div[style*="background-color: white"] {
+    background: transparent !important;
+}
+
+/* "ERFASSEN" Button */
+html.revanced-dark button#erfassen,
+html.revanced-dark button.mdl-button--raised.mdl-button--colored {
+    background: var(--accent) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    padding: 0 32px !important;
+    height: 44px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    box-shadow: 0 4px 14px rgba(156, 39, 176, 0.4) !important;
+}
+
+/* "ÄNDERUNGEN VERWERFEN" Button */
+html.revanced-dark button[name="abbrechen"],
+html.revanced-dark button.mdl-button--raised:not(.mdl-button--colored) {
+    background: #333 !important;
+    color: #eee !important;
+    border-radius: 10px !important;
+    padding: 0 24px !important;
+    height: 44px !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+}
+
+html.revanced-dark button:hover {
+    transform: translateY(-1px) !important;
+    filter: brightness(1.1) !important;
+}
+
+/* Gesamter Form-Container - kein Weiß! */
+html.revanced-dark .cls-form,
+html.revanced-dark #cls-form {
+    background: var(--bg-deep) !important;
+}
+
+/* Alle direkten Kinder der Form die weiß sein könnten */
+html.revanced-dark .cls-form > div,
+html.revanced-dark .cls-form > section,
+html.revanced-dark .cls-form > article {
+    background: transparent !important;
+}
+
+/* Alle main und content Container */
+html.revanced-dark main,
+html.revanced-dark .mdl-layout__content,
+html.revanced-dark #nav-drawer,
+html.revanced-dark .mdl-layout--fixed-drawer {
+    background: var(--bg-deep) !important;
+}
+
+/* br-Elemente verstecken - verursachen weiße Abstände */
+html.revanced-dark br {
+    display: block !important;
+    content: "" !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Globaler Catch-all für alle Elemente mit weißem Hintergrund */
+html.revanced-dark div[style*="background-color: #fff"],
+html.revanced-dark div[style*="background-color: white"],
+html.revanced-dark div[style*="background: #fff"],
+html.revanced-dark div[style*="background: white"],
+html.revanced-dark div[style*="background-color:#fff"],
+html.revanced-dark div[style*="background-color:white"] {
+    background-color: var(--bg-deep) !important;
+}
+
+/* Alle Elemente am Ende der Seite */
+html.revanced-dark .cls-form ~ br,
+html.revanced-dark .cls-form + br,
+html.revanced-dark form ~ br {
+    display: none !important;
+}
+
+/* Footer und Background-Banner */
+html.revanced-dark #footer,
+html.revanced-dark #backgroundBanner {
+    background: var(--bg-deep) !important;
+}
+
+/* Spezielle Korrekturen für Listboxen und Filter (z.B. Schul-Auswahl in Mein REvanced) */
+html.revanced-dark #abofilter,
+html.revanced-dark .cls-form--field-container div[style*="overflow: auto"],
+html.revanced-dark #filterabo_div,
+html.revanced-dark #filterabo_div_card_content {
+    background: #1e1e1e !important;
+    color: var(--text-primary) !important;
+}
+
+html.revanced-dark #abofilter {
+    background: #121212 !important;
+    border: 1px solid #333 !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    height: auto !important;
+    max-height: 200px !important;
+}
+
+/* Alle Texte und Elemente innerhalb der Checkbox-Liste */
+html.revanced-dark #abofilter * {
+    background-color: transparent !important;
+    color: #e0e0e0 !important;
+}
+
+/* Label-Text neben Checkboxen */
+html.revanced-dark #abofilter label {
+    color: #e0e0e0 !important;
+}
+
+/* Links wie "Anzeige Terminliste" oder "alle auswählen" */
+html.revanced-dark .mdl-card--cls-form a,
+html.revanced-dark .mdl-card--cls-form span[id*="label"],
+html.revanced-dark a[onclick*="xajax_"],
+html.revanced-dark .cls-form--label-container a,
+html.revanced-dark .cls-form--field-container a {
+    color: var(--accent) !important;
+    text-decoration: none !important;
+    font-size: 0.85rem !important;
+    opacity: 0.9;
+}
+
+html.revanced-dark .mdl-card--cls-form a:hover,
+html.revanced-dark .cls-form--label-container a:hover,
+html.revanced-dark .cls-form--field-container a:hover {
+    opacity: 1;
+    text-decoration: underline !important;
+}
+
+/* Spezielle Korrektur für blaue Links in Labels (Anzeige Terminliste) */
+html.revanced-dark a[style*="color: blue"],
+html.revanced-dark a[style*="color:#0000FF"] {
+    color: var(--accent) !important;
+    background-color: transparent !important;
+}
+
+/* Container um die Checkbox-Liste muss auch dunkel sein */
+html.revanced-dark .mdl-card--cls-form div[style*="overflow"] {
+    background: #121212 !important;
+    border: 1px solid #333 !important;
+}
+
+/* Schulnetz-Label-Text in Formgroups - Anzeige Terminliste */
+html.revanced-dark .mdl-card--cls-form span[id*="label"],
+html.revanced-dark .mdl-card--cls-form .cls-form--label-text {
+    color: var(--text-primary) !important;
+    background-color: transparent !important;
+}
+
+/* Texte und Checkboxen innerhalb von Filtern */
+html.revanced-dark #abofilter label,
+html.revanced-dark #abofilter span {
+    color: #e0e0e0 !important;
+}
+
+html.revanced-dark .mdl-checkbox__label {
+    color: var(--text-primary) !important;
+    font-size: 0.9rem !important;
+}
+
+/* Versteckte Bereiche (Semesterzeugnis einblenden Link) */
+html.revanced-dark .printme.formausblenden {
+    background: rgba(156, 39, 176, 0.1) !important;
+    border-radius: 8px !important;
+    padding: 12px 20px !important;
+    margin-bottom: 15px !important;
+    color: var(--text-secondary) !important;
+}
+
+html.revanced-dark .printme.formausblenden a {
+    color: var(--accent) !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* ============================================= */
+/* KRITISCHE FIXES FÜR WEISSE BEREICHE          */
+/* ============================================= */
+
+/* Die cls-field-infos Klasse (Checkbox-Liste Container) */
+html.revanced-dark .cls-field-infos {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+html.revanced-dark .cls-field-infos * {
+    background-color: transparent !important;
+    color: #e0e0e0 !important;
+}
+
+/* Alle div-Elemente mit overflow (die Listboxen) */
+html.revanced-dark div[style*="overflow: auto"],
+html.revanced-dark div[style*="overflow:auto"] {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #333 !important;
+    border-radius: 8px !important;
+}
+
+/* Checkbox-Label in Listen */
+html.revanced-dark .cls-field-infos label,
+html.revanced-dark div[style*="overflow"] label {
+    color: #e0e0e0 !important;
+    background: transparent !important;
+}
+
+/* Buttons Container am Ende der Seite */
+html.revanced-dark #buttons-container,
+html.revanced-dark .buttons-container,
+html.revanced-dark div[id*="buttons"] {
+    background-color: #1e1e1e !important;
+}
+
+/* Formular Container komplett */
+html.revanced-dark form,
+html.revanced-dark form > div {
+    background-color: transparent !important;
+}
+
+/* Die weißen Ränder um die ganze Seite */
+html.revanced-dark #global-container > main,
+html.revanced-dark #global-container > main > div,
+html.revanced-dark #global-container > main > main {
+    background-color: #121212 !important;
+}
+
+/* Alle nested main und div Elemente */
+html.revanced-dark main > div,
+html.revanced-dark main > main,
+html.revanced-dark .mdl-layout__content > div {
+    background-color: #121212 !important;
+}
+
+/* Footer-Bereich und alles danach */
+html.revanced-dark body > div:last-child,
+html.revanced-dark #global-container ~ div {
+    background-color: #121212 !important;
+}
+
+/* Das übergeordnete Layout */
+html.revanced-dark .mdl-layout.mdl-js-layout {
+    background-color: #121212 !important;
+}
+
+/* Spezifisch die doppelten main/div Strukturen von Schulnetz */
+html.revanced-dark main.mdl-layout__content > div.mdl-layout {
+    background-color: #121212 !important;
+}
+
+html.revanced-dark main.mdl-layout__content > div.mdl-layout > main {
+    background-color: #121212 !important;
+}
+
+/* ============================================= */
+/* FIX FÜR WEISSE BEREICHE AM SEITENENDE        */
+/* ============================================= */
+
+/* Die br-Elemente am Ende der Seite */
+html.revanced-dark .cls-form ~ br,
+html.revanced-dark form ~ br,
+html.revanced-dark #cls-form ~ br {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Die verschachtelten main/div Container am Ende */
+html.revanced-dark #global-container > main > div > main,
+html.revanced-dark #global-container > main > main {
+    background-color: #121212 !important;
+    min-height: 0 !important;
+}
+
+/* Alle leeren divs die weiß sein könnten */
+html.revanced-dark .cls-form + div:empty,
+html.revanced-dark form + div:empty {
+    display: none !important;
+}
+
+/* Der übergeordnete Container der alles umschließt */
+html.revanced-dark #nav-drawer {
+    background-color: #121212 !important;
+}
+
+html.revanced-dark #nav-drawer > main,
+html.revanced-dark #nav-drawer > div {
+    background-color: #121212 !important;
+}
+
+/* Buttons-Container am Ende */
+html.revanced-dark #buttons-container {
+    background-color: #1e1e1e !important;
+    border-top: 1px solid #333 !important;
+    margin-top: 0 !important;
+}
+
+/* Alle Elemente nach dem Formular */
+html.revanced-dark .cls-form::after {
+    content: none !important;
+}
+
+html.revanced-dark #cls-form::after {
+    content: none !important;
 }
