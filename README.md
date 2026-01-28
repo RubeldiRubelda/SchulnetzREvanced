@@ -40,4 +40,8 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 >Dieses Projekt ist **kein** offizielles Angebot des Kantons Luzern oder der Centerboard AG. Es handelt sich um eine unabhängige Open-Source-Erweiterung.
 > *   **Keine Verbindung:** Es besteht keine offizielle Zusammenarbeit mit den Betreibern von Schulnetz.
 > *   **Nutzung auf eigene Gefahr:** Die Erweiterung wird "wie besehen" (as-is) bereitgestellt. Für die Richtigkeit der angezeigten Daten (insb. Noten und Termine) sind weiterhin ausschließlich die offiziellen Anzeigen in Schulnetz maßgeblich.
-> *   **Datenschutz:** Das Addon verarbeitet oder speichert keine Anmeldedaten auf externen Servern. Alle Modifikationen finden lokal in deinem Browser statt.
+> *   **Datenschutz & Analytics:** 
+>     *   Das Addon verarbeitet oder speichert **keine Schuldaten** (Noten, Namen, etc.) auf externen Servern. Alle Modifikationen finden lokal statt.
+>     *   Zur Qualitätsverbesserung werden anonyme Nutzungsstatistiken via Google Analytics und Browser-Telemetrie (Chrome, Edge, Firefox) erfasst.
+>     *   Diese Daten dienen rein der Analyse der Nutzerzahlen und Funktionsinteraktionen. **Einzelnoten oder persönliche Inhalte werden niemals erfasst.**
+>     *   Weitere Details findest du in der [Datenschutzerklärung](PRIVACY.md).
