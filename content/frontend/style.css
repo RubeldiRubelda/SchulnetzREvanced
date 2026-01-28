@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'Geist';
+  src: url('../../content/fonts/Geist-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
  body { 
-            font-family: Arial, sans-serif; 
+            font-family: 'Geist', Arial, sans-serif; 
             margin: 20px; 
             background-color: white; 
             color: black; 
@@ -52,8 +59,8 @@
         body.dark-mode .qr-btn,
         body.dark-mode .calendar-btn,
         body.dark-mode .open-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #bbb;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #ddd !important;
         }
 
         body.dark-mode .settings-link:hover, 
@@ -61,8 +68,8 @@
         body.dark-mode .qr-btn:hover,
         body.dark-mode .calendar-btn:hover,
         body.dark-mode .open-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
         }
 
         body.dark-mode h1 {
@@ -82,12 +89,11 @@
             min-height: 48px;
         }
 
-        .settings-link, .back-link {
+        .settings-link, .back-link, .open-btn, .calendar-btn, .qr-btn {
             position: absolute;
             top: 0;
-            right: 0;
-            color: #555;
-            transition: color 0.2s, transform 0.2s ease-in-out;
+            color: #444 !important;
+            transition: all 0.2s ease-in-out;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -95,107 +101,31 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgba(0, 0, 0, 0.1) !important;
             z-index: 10;
+            border: none !important;
+            cursor: pointer;
+            padding: 0 !important;
+        }
+
+        .settings-link, .back-link { right: 0; }
+        .open-btn { right: 126px; }
+        .calendar-btn { right: 84px; }
+        .qr-btn { right: 42px; }
+
+        .settings-link:hover, .back-link:hover, .qr-btn:hover, .calendar-btn:hover, .open-btn:hover {
+            color: #000;
+            transform: scale(1.1);
+            background-color: rgba(0, 0, 0, 0.15);
         }
 
         .settings-link:hover {
-            color: #000;
             transform: scale(1.1) rotate(45deg);
-            background-color: rgba(0, 0, 0, 0.1);
         }
 
-        .open-btn {
-            position: absolute;
-            top: 0;
-            right: 126px; 
-            color: #555;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            padding: 0;
-        }
-
-        .open-btn svg {
+        .open-btn svg, .calendar-btn svg, .qr-btn svg {
             display: block;
             pointer-events: none;
-        }
-
-        .calendar-btn {
-            position: absolute;
-            top: 0;
-            right: 84px; 
-            color: #555;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            padding: 0;
-        }
-
-        .calendar-btn svg {
-            display: block;
-            pointer-events: none;
-        }
-
-        .calendar-btn:hover {
-            color: #000;
-            transform: scale(1.1);
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .open-btn:hover {
-            color: #000;
-            transform: scale(1.1);
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .qr-btn {
-            position: absolute;
-            top: 0;
-            right: 42px; 
-            color: #555;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            padding: 0; 
-        }
-
-        .qr-btn svg {
-            display: block;
-            pointer-events: none;
-        }
-
-        .qr-btn:hover {
-            color: #000;
-            transform: scale(1.1);
-            background-color: rgba(0, 0, 0, 0.1);
         }
 
         .modal {
@@ -233,12 +163,6 @@
 
         .close:hover {
             color: black;
-        }
-
-        .back-link:hover {
-            color: #000;
-            transform: scale(1.1);
-            background-color: rgba(0, 0, 0, 0.1);
         }
 
         label { display: block; margin: 10px 0 5px; }
@@ -324,14 +248,14 @@
             color: black; 
             border: 1px solid #ccc; 
         }
-        button { 
+        button:not(.settings-link):not(.back-link):not(.qr-btn):not(.calendar-btn):not(.open-btn) { 
             padding: 10px 20px; 
             background-color: #4CAF50; 
             color: white; 
             border: none; 
             cursor: pointer; 
         }
-        button:hover { background-color: #45a049; }
+        button:not(.settings-link):not(.back-link):not(.qr-btn):not(.calendar-btn):not(.open-btn):hover { background-color: #45a049; }
 
         .color-presets {
             display: flex;
@@ -407,12 +331,12 @@
             }
             h1 { color: #ccc; }
 
-            .settings-link, .back-link, .qr-btn {
-                color: #aaa !important;
+            .settings-link, .back-link, .qr-btn, .calendar-btn, .open-btn {
+                color: #ddd !important;
                 background-color: rgba(255, 255, 255, 0.1) !important;
             }
 
-            .settings-link:hover, .back-link:hover, .qr-btn:hover {
+            .settings-link:hover, .back-link:hover, .qr-btn:hover, .calendar-btn:hover, .open-btn:hover {
                 color: white !important;
                 background-color: rgba(255, 255, 255, 0.2) !important;
             }

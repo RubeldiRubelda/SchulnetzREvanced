@@ -10,9 +10,10 @@
 :root {
     --accent: #9c27b0; /* Default Schulnetz Violet approx or custom */
     --accent-hover: #ba68c8;
+    --font-geist: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-*:not(i) {
+body.revanced-active *:not(i) {
     font-family: var(--font-geist) !important;
 }
 
@@ -31,6 +32,17 @@ body.revanced-active img.cls-page--header-row--sn-logo {
 /* Falls REvanced deaktiviert ist, Logo sofort zeigen */
 body.revanced-disabled img.cls-page--header-row--sn-logo {
     opacity: 1;
+}
+
+/* Tables - Die Notenliste etc. */
+html:not(.revanced-dark) body.revanced-active .mdl-data-table,
+html:not(.revanced-dark) body.revanced-active .cls-table {
+    border-top: 4px solid var(--accent) !important;
+}
+
+/* Activity Indicator Line at the top */
+html:not(.revanced-dark) body.revanced-active .cls-page--header {
+    border-top: 4px solid var(--accent) !important;
 }
 
 /* DARK MODE IMPLEMENTATION - HIGH QUALITY */
@@ -52,6 +64,12 @@ html.revanced-dark {
     
     /* WICHTIG: Hintergrund auf Root-Level */
     background-color: #121212 !important;
+}
+
+/* User Selection Highlight fix for Dark Mode */
+html.revanced-dark ::selection {
+    background-color: var(--accent) !important;
+    color: white !important;
 }
 
 html.revanced-dark body {
@@ -117,15 +135,27 @@ html.revanced-dark .mdl-navigation__link:hover {
 
 html.revanced-dark .cls-page--mainmenu-element {
     color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+    padding: 0 15px !important;
+    transition: all 0.2s ease !important;
 }
 
 html.revanced-dark .cls-page--mainmenu-active {
     color: var(--accent) !important;
-    border-bottom: 2px solid var(--accent) !important;
+    border-bottom: 3px solid var(--accent) !important;
+    font-weight: 700 !important;
 }
 
 html.revanced-dark .cls-page--mainmenu-element:hover {
-    color: var(--accent-hover) !important;
+    color: var(--accent) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Nav Icons Fix */
+.cls-page--mainmenu-element i {
+    font-size: 20px !important;
+    margin-bottom: 4px !important;
+    display: block !important;
 }
 
 /* Gradient & Spacers */
@@ -151,6 +181,41 @@ html.revanced-dark #global-container,
 html.revanced-dark .mdl-layout {
     background-color: var(--bg-deep) !important;
 }
+
+/* Cleanup: Remove empty spacers/headers content elements to pull cards up */
+body.revanced-active .cls-page--content-container > div:empty,
+body.revanced-active .cls-page--content-container > br,
+body.revanced-active .page-content > br,
+body.revanced-active .mdl-grid > br {
+    display: none !important;
+}
+
+/* Remove excessive top margins from cards on the home screen */
+body.revanced-active .cls-home-column > div,
+body.revanced-active .mdl-grid > .mdl-cell {
+    margin-top: 5px !important;
+    padding-top: 5px !important;
+}
+
+/* Specific fix for Schulnetz Home Grid spacing */
+body.revanced-active .mdl-grid {
+    padding: 8px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+/* Pull primary main container up if there's no header title above it */
+body.revanced-active main.mdl-layout__content > .page-content {
+    padding-top: 0 !important;
+}
+
+/* Remove spacing between headers and their cards */
+body.revanced-active .cls-home-column h3, 
+body.revanced-active .mdl-cell h3 {
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+}
+
 /* --- LANDINGPAGE STYLES --- */
 body.revanced-landingpage {
     background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
@@ -268,18 +333,17 @@ body.revanced-landingpage div[style*="background-color: #5e80bb"] {
 body.revanced-landingpage table,
 body.revanced-landingpage tbody {
     display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 30px !important;
+    flex-direction: column !important; /* Stack columns vertically for more focus */
+    gap: 20px !important;
     width: 100% !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
+    max-width: 600px !important; /* Center and narrow it */
+    margin: 0 auto !important;
+    align-items: stretch !important;
 }
 
 body.revanced-landingpage tr:has(ul) {
     display: block !important;
-    flex: 1 !important;
-    min-width: 280px !important;
+    width: 100% !important;
 }
 
 body.revanced-landingpage tr:not(:has(ul)) {
@@ -494,6 +558,167 @@ html.revanced-dark .mdl-dialog {
 /* Startseite spezifisch */
 html.revanced-dark #logo-span {
     background-color: transparent !important;
+}
+
+/* --- RESPONSIVE TABLES (LISTEN & DOKUMENTE ETC.) --- */
+/* Verhindert das "Sprengen" des Layouts bei vielen Spalten */
+body.revanced-active .cls-page--content-container,
+body.revanced-active .cls-page--content-card,
+body.revanced-active .mdl-card {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+}
+
+body.revanced-active .mdl-data-table,
+body.revanced-active .cls-table {
+    width: 100% !important;
+}
+
+/* Optimierung für "Listen & Dokumente" auf kleineren Bildschirmen */
+@media screen and (max-width: 1400px) {
+    /* Weniger wichtige Spalten ausblenden, um Platz zu sparen */
+    body.revanced-active .cls-table th:nth-last-child(2), 
+    body.revanced-active .cls-table td:nth-last-child(2), /* Grösse */
+    body.revanced-active .cls-table th:nth-child(5), 
+    body.revanced-active .cls-table td:nth-child(5)  /* Erfasst von */ {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    body.revanced-active .cls-table th:nth-child(3), 
+    body.revanced-active .cls-table td:nth-child(3), /* Kommentar */
+    body.revanced-active .cls-table th:nth-last-child(4) , 
+    body.revanced-active .cls-table td:nth-last-child(4) /* Kategorie */ {
+        display: none !important;
+    }
+}
+
+/* Suchfelder in Tabellen kompakter machen */
+body.revanced-active .suchfeld input,
+body.revanced-active .cls-sticky-filter input {
+    height: 24px !important;
+    font-size: 11px !important;
+    padding: 0 4px !important;
+}
+
+/* Dashboard & Layout Optimierung */
+body.revanced-active .mdl-layout__content {
+    padding-top: 8px !important;
+}
+
+body.revanced-active .mdl-grid {
+    padding: 8px !important;
+    gap: 8px !important; /* Weniger Abstand zwischen den Kacheln */
+}
+
+body.revanced-active .mdl-cell {
+    margin-bottom: 8px !important;
+}
+
+/* --- READABLE COMPACT TABLE --- */
+body.revanced-active .mdl-data-table td,
+body.revanced-active .cls-table td {
+    padding: 8px 12px !important;
+    height: 38px !important;    
+    font-size: 13px !important;
+}
+
+/* Header & Filter Zeile */
+body.revanced-active .mdl-data-table thead th,
+body.revanced-active .cls-table thead th {
+    padding: 10px 12px !important;
+    height: 44px !important;
+    color: var(--text-secondary) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 11px !important;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border) !important;
+}
+
+/* Die Zeile mit den Suchfeldern */
+body.revanced-active .mdl-data-table thead tr:nth-child(2) th,
+body.revanced-active .cls-table thead tr:nth-child(2) th {
+    height: 50px !important;
+    background: rgba(255,255,255,0.02) !important;
+    vertical-align: middle !important;
+}
+
+body.revanced-active .mdl-data-table .mdl-textfield,
+body.revanced-active .cls-table .mdl-textfield {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 32px !important;
+}
+
+body.revanced-active .mdl-data-table .mdl-textfield__input,
+body.revanced-active .cls-table .mdl-textfield__input {
+    padding: 6px 10px !important;
+    border: 1px solid #444 !important;
+    background: #1a1a1a !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    height: 32px !important;
+    color: #fff !important;
+    box-sizing: border-box !important;
+}
+
+body.revanced-active .mdl-data-table .mdl-textfield__input:focus,
+body.revanced-active .cls-table .mdl-textfield__input:focus {
+    border-color: var(--accent) !important;
+    outline: none !important;
+}
+
+/* Pagination / Footer */
+body.revanced-active .cls-table-footer {
+    padding: 8px 16px !important;
+}
+
+/* Titel-Spalte darf breiter sein und Text kürzen */
+body.revanced-active .mdl-data-table td:nth-child(2),
+body.revanced-active .cls-table td:nth-child(2) {
+    max-width: 250px !important;
+    font-weight: 500;
+}
+
+/* Datum-Spalten schmal halten */
+body.revanced-active .cls-table td:nth-child(4),
+body.revanced-active .cls-table td:nth-child(6) {
+    width: 75px !important;
+    font-size: 11.5px !important;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+}
+
+/* Icon-Spalten (Aktionen) minimieren */
+body.revanced-active .cls-table td:first-child {
+    width: 75px !important;
+    padding: 0 4px !important;
+    text-align: center;
+}
+
+body.revanced-active .cls-table .fas, 
+body.revanced-active .cls-table .far, 
+body.revanced-active .cls-table .fal {
+    font-size: 13px !important;
+    margin-right: 2px !important;
+    opacity: 0.7;
+}
+
+body.revanced-active .cls-table tr:hover .fas,
+body.revanced-active .cls-table tr:hover .far {
+    opacity: 1;
+    color: var(--accent) !important;
+}
+
+/* Sticky Headers für lange Listen */
+body.revanced-active .cls-sticky-header,
+body.revanced-active thead th {
+    position: sticky !important;
+    top: 0;
+    z-index: 5;
 }
 
 html.revanced-dark .timer-holder svg circle {
@@ -772,11 +997,21 @@ html.revanced-dark .mdl-card--cls-form {
     overflow: hidden !important;
 }
 
-/* Header innerhalb der Karten (z.B. Kontaktangaben) */
+/* Mobile-Style Buttons (Stacking entfernt für bessere Lesbarkeit auf Desktop) */
 html.revanced-dark .mdl-card--cls-form .mdl-card__actions {
     background: rgba(255,255,255,0.02) !important;
     border-bottom: 1px solid var(--border) !important;
     padding: 12px 20px !important;
+    display: flex !important;
+    flex-direction: row !important; /* Zurück zu nebeneinander */
+    gap: 12px !important;
+}
+
+html.revanced-dark .mdl-card--cls-form .mdl-card__actions button,
+html.revanced-dark .mdl-card--cls-form .mdl-card__actions .mdl-button {
+    width: auto !important;
+    margin: 0 !important;
+    border-radius: 6px !important;
 }
 
 html.revanced-dark .mdl-card--cls-form .mdl-card__actions span,
@@ -788,21 +1023,27 @@ html.revanced-dark .mdl-card--cls-form span[onclick*="toggleFormGroup"] {
     letter-spacing: 0.5px !important;
 }
 
-/* Form-Rows und Labels */
+/* Form-Rows und Labels (Wiederherstellung der Lesbarkeit) */
 html.revanced-dark .mdl-card--cls-form table {
     margin: 10px 0 !important;
+    width: 100% !important;
+}
+
+html.revanced-dark .mdl-card--cls-form tr {
+    display: table-row !important;
 }
 
 html.revanced-dark .mdl-card--cls-form td {
     padding: 12px 20px !important;
-    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
 }
 
 html.revanced-dark .mdl-card--cls-form label,
 html.revanced-dark .mdl-card--cls-form .cls-form--label {
     color: var(--text-secondary) !important;
     font-weight: 500 !important;
-    font-size: 0.9rem !important;
+    font-size: 14px !important;
+    text-transform: none !important;
 }
 
 html.revanced-dark .mdl-card--cls-form input[type="text"],
@@ -1069,6 +1310,7 @@ html.revanced-dark div[style*="overflow"] label {
     color: #e0e0e0 !important;
     background: transparent !important;
 }
+
 
 /* Buttons Container am Ende der Seite */
 html.revanced-dark #buttons-container,

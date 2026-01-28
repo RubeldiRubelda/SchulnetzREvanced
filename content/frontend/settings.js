@@ -147,6 +147,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     saveButton.textContent = originalText;
                     saveButton.style.backgroundColor = "";
                 }, 1500);
+
+                // Refresh all tabs where Schulnetz REvanced is active
+                const manifest = chrome.runtime.getManifest();
+                const patterns = manifest.content_scripts[0].matches;
+                
+                chrome.tabs.query({ url: patterns }, function(tabs) {
+                    tabs.forEach(tab => {
+                        chrome.tabs.reload(tab.id);
+                    });
+                });
             });
         });
     }

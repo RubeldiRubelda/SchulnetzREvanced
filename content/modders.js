@@ -375,6 +375,7 @@ const Modders = {
                             this.handleHandyQR(node);
                             this.handleStundenplanAbo(node);
                             this.styleLandingPage();
+                            this.cleanupStartPage();
                             this.styleSettingsPage();
                             this.removeWhiteBackgrounds();
                         } else if (node.nodeType === 3) { // Text
@@ -394,6 +395,37 @@ const Modders = {
             subtree: true,
             characterData: true
         });
+    },
+
+    /**
+     * Räumt die Startseite auf (entfernt leere Platzhalter und zieht Container hoch)
+     */
+    cleanupStartPage: function() {
+        if (!document.querySelector('#startMenu')) return;
+        
+        // Entferne leere mdl-cell--12-col Spacer
+        document.querySelectorAll('#startMenu .mdl-cell--12-col').forEach(spacer => {
+            if (spacer.children.length === 0 || (spacer.innerHTML.trim() === '' && !spacer.innerText.trim())) {
+                spacer.style.display = 'none';
+            }
+        });
+        
+        // Suche nach leeren mdl-grid oder mdl-cell
+        document.querySelectorAll('#startMenu .mdl-cell').forEach(cell => {
+             // Wenn die Zelle nur Textknoten mit Whitespace hat oder komplett leer ist
+             if (cell.innerHTML.trim() === '' && cell.childNodes.length > 0) {
+                 cell.style.display = 'none';
+             }
+        });
+
+        // Die Startseite ist ein mdl-grid.
+        const grid = document.querySelector('#startMenu.mdl-grid');
+        if (grid) {
+            grid.style.display = 'flex';
+            grid.style.flexWrap = 'wrap';
+            grid.style.alignContent = 'flex-start';
+            grid.style.padding = '10px';
+        }
     },
 
     /**
@@ -436,6 +468,7 @@ const Modders = {
                     this.handleHandyQR(document.body);
                     this.handleStundenplanAbo(document.body);
                     this.styleLandingPage();
+                    this.cleanupStartPage();
                     this.initObserver();
                     this.styleSettingsPage();
                 } else {
@@ -568,7 +601,7 @@ const Modders = {
         const navDrawer = document.getElementById('nav-drawer');
         if (navDrawer) {
             navDrawer.style.backgroundColor = '#121212';
-            navDrawer.querySelectorAll('main, > div').forEach(el => {
+            navDrawer.querySelectorAll('main, :scope > div').forEach(el => {
                 el.style.backgroundColor = '#121212';
             });
         }
