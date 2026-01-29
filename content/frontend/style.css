@@ -589,3 +589,8 @@
             padding-bottom: 10px;
             opacity: 0.6;
         }
+
+        .privacyinformation {
+            color: #057cf4;
+            text-decoration: underline;
+        }
