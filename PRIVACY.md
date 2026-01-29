@@ -27,7 +27,7 @@ Diese Daten werden nicht synchronisiert und verbleiben ausschließlich in Ihrem 
 ## 4. Berechtigungen
 Die von der Erweiterung angeforderten Berechtigungen werden ausschließlich für die beschriebenen Funktionen genutzt:
 *   `storage`: Zum Speichern Ihrer Einstellungen.
-*   `host permissions` (*.lu.ch): Erforderlich, um die Design-Anpassungen auf der Schulnetz-Seite vorzunehmen.
+*   `host permissions` (*.lu.ch): Erforderlich, um die Design-Anpassungen auf der Schulnetz-Seite vorzunehmen. -- In Zukunft wird Support für weitere Schulen hinzukommen. Diese werden nach dem selben Prinzip angefügt.
 
 ## 5. Änderungen
 Da keine Daten gesammelt werden, haben Änderungen an der Erweiterung in der Regel keine Auswirkungen auf Ihre Privatsphäre. Sollten künftige Funktionen eine Datenerhebung notwendig machen, wird diese Datenschutzerklärung aktualisiert und Sie werden über die Erweiterung informiert.
