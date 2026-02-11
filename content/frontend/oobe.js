@@ -1,28 +1,12 @@
 // oobe.js - Ersteinrichtung für Schulnetz REvanced
 
-const schools = [
-    { id: 'ksalp', name: 'Kantonsschule Alpenquai Luzern' },
-    { id: 'ksber', name: 'Kantonsschule Beromünster' },
-    { id: 'ksmus', name: 'Kantonsschule Musegg Luzern' },
-    { id: 'ksreu', name: 'Kantonsschule Reussbühl Luzern' },
-    { id: 'kssch', name: 'Kantonsschule Schüpfheim' },
-    { id: 'kssee', name: 'Kantonsschule Seetal' },
-    { id: 'kssur', name: 'Kantonsschule Sursee' },
-    { id: 'kswil', name: 'Kantonsschule Willisau' },
-    { id: 'bbzb', name: 'BBZ Bau und Gewerbe' },
-    { id: 'bbzg', name: 'BBZ Gesundheit und Soziales' },
-    { id: 'bbzn', name: 'BBZ Natur und Ernährung' },
-    { id: 'bbzw', name: 'BBZ Wirtschaft, Informatik und Technik' },
-    { id: 'fmz', name: 'FMZ Luzern' },
-    { id: 'wbzlu', name: 'WBZ Luzern' },
-    { id: 'zba', name: 'ZBA Luzern' },
-    { id: 'zentrale', name: 'Zentraler Mandant' }
-];
-
 let selectedSchoolId = 'bbzw';
+let selectedCantonId = 'LU';
 let selectedColor = '#bb86fc';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const schoolsList = window.Schools || [];
+    const cantonsList = window.Cantons || [];
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const nextBtn = document.getElementById('nextToSetup');
@@ -73,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const filtered = schools.filter(s => 
+            const filtered = schoolsList.filter(s => 
                 s.name.toLowerCase().includes(val) || s.id.toLowerCase().includes(val)
             );
 
@@ -102,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             div.textContent = school.name;
             div.addEventListener('click', () => {
                 selectedSchoolId = school.id;
+                selectedCantonId = school.canton;
                 schoolSearch.value = school.name;
                 schoolResults.classList.remove('visible');
             });
@@ -127,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 theme: themeSelect.value,
                 languageMode: langSelect.value,
                 schoolId: selectedSchoolId,
+                cantonId: selectedCantonId,
                 accentColor: selectedColor,
                 oobeCompleted: true,
                 revancedEnabled: true

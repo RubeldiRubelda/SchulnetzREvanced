@@ -1,0 +1,24 @@
+/**
+ * ag_styles.css - Aargau / BBBaden spezifische Styles
+ */
+
+/* Wenn REvanced aktiv ist, das alternative Logo von BBBaden verstecken */
+body.revanced-active.school-bbaden img[src*="logo-bbb"],
+body.revanced-active.school-bbaden img[src*="bbb-logo"],
+body.revanced-active.school-bbaden .cls-page--header-row--logo-span {
+    /* Falls es ein Hintergrundbild ist */
+    background-image: none !important;
+}
+
+/* Spezifische Korrektur für das Logo, falls es überlagert wird */
+body.revanced-active.school-bbaden img.cls-page--header-row--sn-logo.revanced-ready {
+    position: relative;
+    z-index: 10;
+    /* Falls das alte Logo ein Background von einem Parent ist */
+}
+
+/* Das Logo-Element von BBBaden (falls es eine ID hat) */
+body.revanced-active.school-bbaden #logo,
+body.revanced-active.school-bbaden .logo-container img:not(.revanced-ready) {
+    display: none !important;
+}

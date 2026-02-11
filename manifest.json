@@ -25,21 +25,28 @@
     },
     "host_permissions": [
         "*://schulnetz.lu.ch/*",
+        "*://schulnetz.bbaden.ch/*",
         "*://api.github.com/*"
     ],
     "content_scripts": [
         {
             "matches": [
-                "*://schulnetz.lu.ch/*"
+                "*://schulnetz.lu.ch/*",
+                "*://schulnetz.bbaden.ch/*"
             ],
             "js": [
+                "content/schools/schools.js",
+                "content/schools/LU/modder.js",
+                "content/schools/AG/modder.js",
                 "content/i18n/du.js",
                 "content/i18n/sie.js",
                 "content/modders.js",
                 "content/contentScript.js"
             ],
             "css": [
-                "content/styles.css"
+                "content/styles.css",
+                "content/schools/LU/styles.css",
+                "content/schools/AG/styles.css"
             ],
             "run_at": "document_start"
         }

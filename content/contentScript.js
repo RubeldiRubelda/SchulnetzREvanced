@@ -1,12 +1,27 @@
 // Schulnetz REvanced Content Script
 
 function init() {
-    chrome.storage.local.get(['revancedEnabled'], function(result) {
+    chrome.storage.local.get(['revancedEnabled', 'schoolId'], function(result) {
         const enabled = result.revancedEnabled !== false;
         if (enabled) {
-            // Modders sofort starten (nutzt MutationObserver für frühe Elemente)
+            // Detect school from URL or use saved schoolId
+            const currentUrl = window.location.href;
+            let school = null;
+            
+            if (window.Schools) {
+                school = window.Schools.find(s => currentUrl.startsWith(s.url));
+            }
+            
+            const schoolId = school ? school.id : (result.schoolId || 'bbzw');
+            const cantonId = school ? school.canton : 'LU';
+
+            // Add school and canton classes to body
+            ensureBodyClass(`school-${schoolId}`);
+            ensureBodyClass(`canton-${cantonId}`);
+
+            // Modders sofort starten
             if (window.Modders) {
-                window.Modders.runAll();
+                window.Modders.runAll(schoolId, cantonId);
             }
             
             // Warten bis Body da ist für die CSS-Klasse

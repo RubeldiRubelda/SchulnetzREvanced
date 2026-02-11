@@ -23,10 +23,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const themeSelect = document.getElementById('theme');
     const langSelect = document.getElementById('languageMode');
+    const cantonSelect = document.getElementById('cantonId');
     const schoolSelect = document.getElementById('schoolId');
     const hideGradesCheckbox = document.getElementById('hideGrades');
     const accentColorInput = document.getElementById('accentColor');
     const saveButton = document.getElementById('revancedStatusButton');
+
+    // Cantons füllen
+    if (cantonSelect && window.Cantons) {
+        window.Cantons.forEach(canton => {
+            const option = document.createElement('option');
+            option.value = canton.id;
+            option.textContent = canton.name;
+            cantonSelect.appendChild(option);
+        });
+    }
+
+    function updateSchools(cantonId, selectedSchoolId = null) {
+        if (!schoolSelect || !window.Schools) return;
+        
+        schoolSelect.innerHTML = '';
+        const filteredSchools = window.Schools.filter(s => s.canton === cantonId);
+        
+        filteredSchools.forEach(school => {
+            const option = document.createElement('option');
+            option.value = school.id;
+            option.textContent = school.name;
+            if (selectedSchoolId && school.id === selectedSchoolId) {
+                option.selected = true;
+            }
+            schoolSelect.appendChild(option);
+        });
+    }
+
+    if (cantonSelect) {
+        cantonSelect.addEventListener('change', function() {
+            updateSchools(this.value);
+        });
+    }
 
     // Back-Button Logik mit Animation
     const backLink = document.querySelector('.back-link');
@@ -40,10 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    chrome.storage.local.get(['theme', 'languageMode', 'schoolId', 'hideGrades', 'accentColor', 'warningColorMode'], function(result) {
+    chrome.storage.local.get(['theme', 'languageMode', 'schoolId', 'hideGrades', 'accentColor', 'warningColorMode', 'cantonId'], function(result) {
         if (themeSelect) themeSelect.value = result.theme || 'devicestandard';
         if (langSelect) langSelect.value = result.languageMode || 'du';
-        if (schoolSelect) schoolSelect.value = result.schoolId || 'bbzw';
+        
+        const savedCanton = result.cantonId || 'LU';
+        if (cantonSelect) cantonSelect.value = savedCanton;
+        
+        updateSchools(savedCanton, result.schoolId || 'bbzw');
+        
         if (hideGradesCheckbox) hideGradesCheckbox.checked = result.hideGrades || false;
         if (accentColorInput) {
             const color = result.accentColor || '#bb86fc';
@@ -124,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         saveButton.addEventListener('click', function() {
             const theme = themeSelect.value;
             const lang = langSelect.value;
+            const cantonId = cantonSelect ? cantonSelect.value : 'LU';
             const schoolId = schoolSelect ? schoolSelect.value : 'bbzw';
             const hideGrades = hideGradesCheckbox.checked;
             const accentColor = customColorInput ? customColorInput.value : '#bb86fc';
@@ -132,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
             chrome.storage.local.set({
                 theme: theme,
                 languageMode: lang,
+                cantonId: cantonId,
                 schoolId: schoolId,
                 hideGrades: hideGrades,
                 accentColor: accentColor,

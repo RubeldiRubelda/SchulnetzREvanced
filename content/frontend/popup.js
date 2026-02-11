@@ -58,7 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
         openSchulnetzBtn.addEventListener('click', () => {
             chrome.storage.local.get(['schoolId'], (result) => {
                 const schoolId = result.schoolId || 'bbzw';
-                window.open(`https://schulnetz.lu.ch/${schoolId}`, '_blank');
+                let targetUrl = `https://schulnetz.lu.ch/${schoolId}`;
+                
+                // Suche die URL in der Schools Liste
+                if (window.Schools) {
+                    const school = window.Schools.find(s => s.id === schoolId);
+                    if (school && school.url) {
+                        targetUrl = school.url;
+                    }
+                }
+                
+                window.open(targetUrl, '_blank');
             });
         });
     }

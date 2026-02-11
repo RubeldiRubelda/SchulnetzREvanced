@@ -30,30 +30,14 @@
             <option value="sie">"Sie" Form (formell)</option>
         </select>
 
+        <label for="cantonId">Kanton:</label>
+        <select id="cantonId">
+            <!-- Dynamisch gefüllt -->
+        </select>
+
         <label for="schoolId">Meine Schule:</label>
         <select id="schoolId">
-            <optgroup label="Kantonsschulen">
-                <option value="ksalp">Kantonsschule Alpenquai Luzern</option>
-                <option value="ksber">Kantonsschule Beromünster</option>
-                <option value="ksmus">Kantonsschule Musegg Luzern</option>
-                <option value="ksreu">Kantonsschule Reussbühl Luzern</option>
-                <option value="kssch">Kantonsschule Schüpfheim</option>
-                <option value="kssee">Kantonsschule Seetal</option>
-                <option value="kssur">Kantonsschule Sursee</option>
-                <option value="kswil">Kantonsschule Willisau</option>
-            </optgroup>
-            <optgroup label="Berufsbildungszentren">
-                <option value="bbzb">BBZ Bau und Gewerbe</option>
-                <option value="bbzg">BBZ Gesundheit und Soziales</option>
-                <option value="bbzn">BBZ Natur und Ernährung</option>
-                <option value="bbzw" selected>BBZ Wirtschaft, Informatik und Technik</option>
-                <option value="fmz">FMZ Luzern</option>
-                <option value="wbzlu">WBZ Luzern</option>
-                <option value="zba">ZBA Luzern</option>
-            </optgroup>
-            <optgroup label="Andere">
-                <option value="zentrale">Zentraler Mandant</option>
-            </optgroup>
+            <!-- Dynamisch gefüllt -->
         </select>
 
         <div class="setting-row" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
@@ -101,6 +85,7 @@
         <p><strong>Schulnetz REvanced ist ein Quelloffenes Projekt von Benjamin K.</strong> <a class="privacyinformation" target="_blank" href="https://github.com/RubeldiRubelda/SchulnetzREvanced/blob/main/PRIVACY.md">Datenschutzinformationen</a></strong> Dieses Projekt wird "as is" angeboten. Bei Darstellungsfehlern wird empfohlen, das Addon zu Deaktivieren & den Fehler zu melden.</p>
     </footer>
 
+    <script src="../schools/schools.js"></script>
     <script src="settings.js"></script>
 </body>
 </html>
