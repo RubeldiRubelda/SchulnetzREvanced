@@ -30,6 +30,8 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 # Oh Nein!
 🏠 Fehlt deine Schule? - Melde dies per Issue!
 <img width="1807" height="897" alt="image" src="https://github.com/user-attachments/assets/25e2118e-1cb5-4612-b669-b8fd7742798a" />
+Geplante Schulen:
+- BBBaden
 
 
 -----------------------------------------------------------------------------------------------------
@@ -37,7 +39,7 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 **Weiteres**: ⚖️ Haftungsausschluss (Disclaimer)
 
 
->Dieses Projekt ist **kein** offizielles Angebot des Kantons Luzern oder der Centerboard AG. Es handelt sich um eine unabhängige Open-Source-Erweiterung.
+>Dieses Projekt ist **kein** offizielles Angebot des Kantons / der Schule oder der Centerboard AG. Es handelt sich um eine unabhängige Open-Source-Erweiterung.
 > *   **Keine Verbindung:** Es besteht keine offizielle Zusammenarbeit mit den Betreibern von Schulnetz.
 > *   **Nutzung auf eigene Gefahr:** Die Erweiterung wird "wie besehen" (as-is) bereitgestellt. Für die Richtigkeit der angezeigten Daten (insb. Noten und Termine) sind weiterhin ausschließlich die offiziellen Anzeigen in Schulnetz maßgeblich.
 > *   **Datenschutz & Analytics:** 
