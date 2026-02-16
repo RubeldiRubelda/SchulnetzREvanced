@@ -11,7 +11,6 @@ Schulnetz ist eine Plattform für Schulen. Da diese ein Refresh gut vertragen ka
 SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzugte Variante:
 
 ## Browser-Erweiterungen
-> **Information**: Die Addons werden nach und nach zu den Browsern hochgeladen. Dies dauert allerdings noch einiges an Zeit. Bis dahin wird der Direktlink per Github angeboten. 
 
 | Chrome | Edge | Firefox |
 |--------|------|---------|
