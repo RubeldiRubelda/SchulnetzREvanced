@@ -17,6 +17,8 @@ SchulnetzREvanced ist auf mehreren Plattformen verfügbar. Wähle deine bevorzug
 |--------|------|---------|
 | [![Chrome Web Store](https://img.shields.io/badge/Chrome-Download-blue?logo=google-chrome&style=for-the-badge)](https://chromewebstore.google.com/detail/schulnetz-revanced/bicppdldaoejckdbdfgafkljileagogg) | [![Edge Add-ons](https://img.shields.io/badge/Edge-Download-0078D4?logo=microsoft-edge&style=for-the-badge)](https://microsoftedge.microsoft.com/addons/detail/schulnetz-revanced/nbcknhonbngcmnflhjkjnmilgodkkgla) | [![Firefox Add-ons](https://img.shields.io/badge/Firefox-Download-FF7139?logo=firefox&style=for-the-badge)](https://addons.mozilla.org/de/firefox/addon/schulnetz-revanced/) |
 
+> Hinweis für **Firefox**: Da das Addon für die Firefox Renderengine komplett Umprogrammiert werden muss kann es bei Firefox zu Bugs oder Fehlerhaften Features kommen. Diese bitte per Issue Melden. Es wird stark empfohlen einen Chromium basierenden Browser zu verwenden.
+
 ## Direkter Download
 
 [![GitHub Release](https://img.shields.io/badge/GitHub-Download-181717?logo=github&style=for-the-badge)](https://github.com/yourusername/SchulnetzREvanced/releases/latest)
