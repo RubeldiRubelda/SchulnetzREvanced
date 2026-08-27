@@ -16,7 +16,7 @@ const Cantons = [
 
 const Schools = [
     // Luzern
-    { id: 'ksluz', name: 'Kantonsschule St.Klemens', canton: 'LU', url: 'https://schul-netz.com' },
+    { id: 'ksluz', name: 'Kantonsschule St.Klemens', canton: 'LU', url: 'https://www.schul-netz.com/st-klemens' },
     { id: 'ksalp', name: 'Kantonsschule Alpenquai Luzern', canton: 'LU', url: 'https://schulnetz.lu.ch/ksalp' },
     { id: 'ksber', name: 'Kantonsschule Beromünster', canton: 'LU', url: 'https://schulnetz.lu.ch/ksber' },
     { id: 'ksmus', name: 'Kantonsschule Musegg Luzern', canton: 'LU', url: 'https://schulnetz.lu.ch/ksmus' },

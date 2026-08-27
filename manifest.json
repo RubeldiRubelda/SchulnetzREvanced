@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Schulnetz REVANCED",
-    "version": "3.0.0.3",
+    "version": "3.0.0.5",
     "description": "Eine Erweiterung zur Verbesserung der Schulnetz-Erfahrung.",
     "permissions": [
         "storage",
@@ -67,8 +67,7 @@
             "matches": [
                 "*://schulnetz.lu.ch/*",
                 "*://schul-netz.com/*",
-                "*://schulnetz.bbaden.ch/*",
-                "*://www.schul-netz.com/kvbl/*"
+                "*://schulnetz.bbaden.ch/*"
             ]
         },
         {
