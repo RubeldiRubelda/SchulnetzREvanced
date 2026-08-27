@@ -25,6 +25,7 @@
     },
     "host_permissions": [
         "*://schulnetz.lu.ch/*",
+        "*://schul-netz.com/*",
         "*://schulnetz.bbaden.ch/*",
         "*://api.github.com/*"
     ],
@@ -32,6 +33,7 @@
         {
             "matches": [
                 "*://schulnetz.lu.ch/*",
+                "*://schul-netz.com/*",
                 "*://schulnetz.bbaden.ch/*"
             ],
             "js": [
@@ -63,7 +65,10 @@
                 "icons/*.png"
             ],
             "matches": [
-                "*://schulnetz.lu.ch/*"
+                "*://schulnetz.lu.ch/*",
+                "*://schul-netz.com/*",
+                "*://schulnetz.bbaden.ch/*",
+                "*://www.schul-netz.com/kvbl/*"
             ]
         },
         {

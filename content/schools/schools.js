@@ -16,6 +16,7 @@ const Cantons = [
 
 const Schools = [
     // Luzern
+    { id: 'ksluz', name: 'Kantonsschule St.Klemens', canton: 'LU', url: 'https://schul-netz.com' },
     { id: 'ksalp', name: 'Kantonsschule Alpenquai Luzern', canton: 'LU', url: 'https://schulnetz.lu.ch/ksalp' },
     { id: 'ksber', name: 'Kantonsschule Beromünster', canton: 'LU', url: 'https://schulnetz.lu.ch/ksber' },
     { id: 'ksmus', name: 'Kantonsschule Musegg Luzern', canton: 'LU', url: 'https://schulnetz.lu.ch/ksmus' },
@@ -34,7 +35,12 @@ const Schools = [
     { id: 'zentrale', name: 'Zentraler Mandant', canton: 'LU', url: 'https://schulnetz.lu.ch/zentrale' },
     
     // Aargau
-    { id: 'bbaden', name: 'Berufsfachschule BBBaden', canton: 'AG', url: 'https://schulnetz.bbaden.ch' }
+    { id: 'bbaden', name: 'Berufsfachschule BBBaden', canton: 'AG', url: 'https://schulnetz.bbaden.ch' },
+    { id: 'ksag', name: 'Kantonsschule Aargau', canton: 'AG', url: 'https://schulnetz.bbaden.ch/ksag' },
+    // Basel Land
+    { id: 'kvbl', name: 'Bildungseinrichtung Kauf & Detailhandel Basel-Land', canton: 'BL', url: 'https://www.schul-netz.com/kvbl' },
+    // Andere Schulen auf Schulnetz.com
+    { id: 'AllgemeineSchulen', name: 'schul-netz.com', canton: 'ALLG', url: 'https://schul-netz.com' }
 ];
 
 if (typeof window !== 'undefined') {
