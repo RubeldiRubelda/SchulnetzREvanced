@@ -40,7 +40,7 @@ const Schools = [
     // Basel Land
     { id: 'kvbl', name: 'Bildungseinrichtung Kauf & Detailhandel Basel-Land', canton: 'BL', url: 'https://www.schul-netz.com/kvbl' },
     // Andere Schulen auf Schulnetz.com
-    { id: 'AllgemeineSchulen', name: 'schul-netz.com', canton: 'ALLG', url: 'https://schul-netz.com' }
+    { id: 'AllgemeineSchulen', name: 'schul-netz.com', canton: 'ALLG', url: 'https://www.schul-netz.com' }
 ];
 
 if (typeof window !== 'undefined') {
